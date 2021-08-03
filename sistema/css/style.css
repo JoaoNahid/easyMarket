@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+a:hover{
+  text-decoration: none !important;
+}
+input, select{
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: solid 1px #054f77;
+  padding:2px 8px;
+  width: 100%;
+  background-color: #fff;
+}
+input:focus,
+select:focus{
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: solid 1px #ff2800;
+  outline: 0;
+}
+
+.colunasTop{
+  display: inline-block;
+  vertical-align: top;
+}
+.container{
+  width: 1060px;
+  margin: 0 auto;
+
+}
+@media(max-width: 1060px){
+  .container{
+    width: 90%;
+  }
+}
+.floatRight{
+  float: right;
+}
+.floatLeft{
+  float: left;
+}
+
+/* header */
+#header{
+  background-color: #054f77;
+  color: #fff;
+  padding: 20px 0;
+}
+.logoHeader{
+  font-weight: bold;
+  font-size: 30px;
+}
+.logoHeader a{
+  color: #fff;
+  text-decoration: none;
+}
+#header .fas:hover{
+  color: #009000;
+  transition: color .3s;
+  cursor: pointer;
+}
+.loginOptionsHeader{
+  padding: 13px 0;
+}
+.usuarioHeader{
+  margin-right: 20px;
+}
+#ulConfig{
+  list-style: none;
+  position: relative;
+}
+#ulUser{
+  list-style: none;
+  position: relative;
+  display: inline-block;
+}
+#ulUser:hover{
+  color: #009000;
+}
+#ulUser li{
+  cursor: pointer;
+}
+#ulConfig a,
+#ulUser a{
+  color: #fff;
+  text-decoration: none;
+}
+#ulConfig ul,
+#ulUser ul{
+  list-style: none;
+  background-color: #ccc;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  width: 178px;
+  z-index: 9999;
+}
+#menuConfig{
+  display: none;
+  padding: 0 !important;
+}
+#menuConfig a{
+  padding:10px 5px;
+  width: 100%;
+}
+#menuUser li{
+width: 100%;
+height: 35px;
+}
+.menuDropdown:hover #menuUser{
+  display: block;
+  transition: .3s;
+}
+.clickOnConfig{
+  display: block !important;
+}
+.usuarioHeader ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.userIcon{
+  display: none;
+}
+@media(max-width: 461px){
+  .userIcon{
+    display: block;
+  }
+  .userName{
+    display: none;
+  }
+}
+/* fim header */
+
+
+
+/* menu Paginas */
+.menuPaginas{
+  text-align: center;
+  padding: 12px 0 ;
+  border-bottom: solid 1px #000;
+  /* -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -9px black; */
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 5px 10px -2px, rgba(0, 0, 0, 0.3) 0px 3px 60px -30px;
+}
+.menuPaginas ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menuPaginas li{
+  display: inline;
+  margin-right: -6px;
+  position: relative;
+}
+.menuPaginas a{
+  padding: 13px 20px;
+  color: #054f77;
+  text-decoration: none;
+  border-right: solid 1px #ccc;
+}
+.menuPaginas a:hover{
+  background-color: #054f77;
+  color: #fff;
+  transition: .3s;
+}
+.btnHover{
+  color: #054f77 !important;
+}
+.btnHover:hover{
+  background-color: #054f77;
+  color: #fff !important;
+  cursor: pointer;
+}
+/* FIM MENU PAGINAS */
+
+/* MENU ALTERAÇÃO */
+.menuAberto{
+  display: block !important;
+}
+.boxMenuAlteracao{
+  display: none;
+  width: 1060px;
+  border: solid 1px #a9a9a9;
+  margin-top: 35px;
+  text-align: center;
+  background-image: linear-gradient(#c0c0c0, #ccc, #c0c0c0);
+  box-shadow: -2px 2px 5px #c0c0c0;
+  list-style: none;
+  padding: 3px 0 !important;
+  margin: 0;
+  position: absolute;
+  bottom: -80px;
+}
+.boxMenuAlteracao li{
+  display:inline;
+  font-size: 16px;
+  padding: 5px 35px;
+  border-left: solid 1px #c0c0c0;
+  margin-right: -5px;
+  color: #054f77;
+}
+.boxMenuAlteracao a{
+  text-decoration: none;
+  padding: 0 !important;
+}
+.boxMenuAlteracao li:hover{
+  background-image: linear-gradient(#054f77, #084d6e, #054f77 );
+  color: #fff;
+  transition: .3s;
+}
+
+/* FIM MENU ALTERAÇÃO  */
+
+/* CONTEUDO FORMULARIO */
+.conteudoFormulario{
+  width: calc(100% - 20px);
+  padding: 0 10px;
+  margin: 125px 0 50px;
+}
+.btnAdicionar{
+  margin: 14px 0;
+}
+.btnAdicionar a{
+  background-image: linear-gradient(#054f77, #084d6e, #054f77);
+  color: #fff;
+  border: solid 1px #054f77;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+.btnAdicionar a:hover{
+  background-image: linear-gradient( #fff, #fff);
+  color: #054f77;
+  transition: .3s;
+}
+.btnRemover div{
+  background: #ff2800 !important;
+  border: solid 1px #c4302b !important;
+  color: #fff;
+  padding: 5px 10px;
+}
+.btnRemover div:hover{
+  background: #fff !important;
+  color: #ff2800;
+  cursor: pointer;
+}
+.cabecalhoForm h3{
+  font-size: 35px;
+  font-weight: lighter;
+}
+.boxInputs{
+  padding:30px 20px;
+  margin-bottom: 100px;
+  box-shadow: 0px -1px 4px #000;
+}
+.tituloCampo{
+  margin: 50px 0 12px;
+  color: #054f77;
+  font-weight: 400;
+  font-size: 20px;
+}
+.btnSalvar{
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #054f77;
+  width: 157px;
+  border: solid 1px #054f77;
+  font-size: 18px;
+}
+.btnSalvar:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: #054f77;
+}
+.btnSalvar:focus{
+  border: solid 1px #054f77;
+}
+/* FIM ONTEUDO FORMULARIO */
+
+/* lista */
+.boxLista{
+  padding:30px 20px;
+  margin-bottom: 100px;
+}
+.boxLista a{
+  text-decoration: none;
+}
+.itemLista{
+  border-bottom: solid 1px rgba(90, 125, 188, 0.1);
+  padding: 20px 16px;
+  color: rgba(0,0,0,0.87);
+  font-size: 18px;
+}
+.itemLista:hover{
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+/* FIM LISTA */
+
+/* LOGIN */
+#containerLogin{
+  width: 300px;
+  padding: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 3px;
+  margin: 140px auto;
+  text-align: center;
+}
+#containerLogin h3{
+  text-align: left;
+  color: #000;
+  font-size: 24px;
+  margin-bottom: 36px;
+}
+.inputLogin{
+  width: calc(100% - 20px);
+  padding: 5px 10px;
+  border-bottom: solid 1px #054f77;
+  margin-bottom: 15px;
+}
+.btnLogin{
+  border: solid 1px #054f77;
+  background-color: #054f77;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  width: 150px;
+  .margin-top: 24px;
+}
+.btnLogin:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: #054f77;
+  transition: .3s;
+}
+/* LOGIN */
+
+/* lista bazar */
+.boxProdutoBazar{
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 4px;
+  padding: 8px;
+}
+.imgProduto{
+  width: 100%;
+  height: 200px;
+}
+.descProduto{
+  margin-top: 15px;
+  color: #000;
+  text-align: left;
+}
+.descProduto h3{
+  font-weight: 400;
+  font-size: 18px;
+}
+.filtroBusca ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.filtroBusca li{
+  border-bottom: solid 1px #009000;
+  margin-bottom: 13px;
+  color: #212529;
+}
+
+/* lista bazar */
