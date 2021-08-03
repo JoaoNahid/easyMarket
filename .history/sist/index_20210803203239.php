@@ -53,9 +53,9 @@ if(isset($_POST['logar'])){
           $funcaoUsuario = $row['funcaoCliente'];
         }
         $_SESSION['logado'] = true;
-        $_SESSION['idCliente'] = $idUsuario;
-        $_SESSION['funcaoCliente'] = $funcaoUsuario;
-        header('Location: entrada.php');
+       echo  $_SESSION['idCliente'] = $idUsuario;
+       echo $_SESSION['funcaoCliente'] = $funcaoUsuario;
+       // header('Location: entrada.php');
       }
       else{
         echo '

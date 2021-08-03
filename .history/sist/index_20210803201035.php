@@ -49,13 +49,13 @@ if(isset($_POST['logar'])){
       $result = mysqli_query($conn, $query);
       if(mysqli_num_rows($result) == 1){
         while($row = mysqli_fetch_assoc($result)) {
-          $idUsuario = $row['idCliente'];
-          $funcaoUsuario = $row['funcaoCliente'];
+          $idUsuario = $row['idUsuario'];
+          $funcaoUsuario = $row['funcao'];
         }
         $_SESSION['logado'] = true;
-        $_SESSION['idCliente'] = $idUsuario;
-        $_SESSION['funcaoCliente'] = $funcaoUsuario;
-        header('Location: entrada.php');
+        $_SESSION['idUsuario'] = $idUsuario;
+        $_SESSION['funcaoUsuario'] = $funcaoUsuario;
+        header('Location: inserirCategoria.php');
       }
       else{
         echo '

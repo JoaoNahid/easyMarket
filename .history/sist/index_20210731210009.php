@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   include('conexao.php');
 ?>
@@ -29,7 +29,7 @@
       </div>
     </header>
 
-    <?php
+<?php
 if(isset($_POST['logar'])){
   $login = htmlspecialchars($_POST['login'], ENT_QUOTES, 'utf-8');
   $senha = htmlspecialchars($_POST['senha'], ENT_QUOTES, 'utf-8');
@@ -42,19 +42,19 @@ if(isset($_POST['logar'])){
     ';
   }
   else{
-    $query = "SELECT nomeCliente FROM clientes WHERE nomeCliente='$login'";
+    $query = "SELECT login FROM clientes WHERE nomeCliente='$login' OR emailCliente='$login'";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0){
       $query = "SELECT * FROM clientes WHERE senhaCliente ='$senha'";
       $result = mysqli_query($conn, $query);
       if(mysqli_num_rows($result) == 1){
         while($row = mysqli_fetch_assoc($result)) {
-          $idUsuario = $row['idCliente'];
-          $funcaoUsuario = $row['funcaoCliente'];
+          $idUsuario = $row['idUsuario'];
+          $funcaoUsuario = $row['funcao'];
         }
         $_SESSION['logado'] = true;
-        $_SESSION['idCliente'] = $idUsuario;
-        $_SESSION['funcaoCliente'] = $funcaoUsuario;
+        $_SESSION['idUsuario'] = $idUsuario;
+        $_SESSION['funcaoUsuario'] = $funcaoUsuario;
         header('Location: entrada.php');
       }
       else{

@@ -28,7 +28,7 @@
     <header id="header">
       <div class="container">
         <div class="colunasTop logoHeader">
-          <a href="entrada.php"><span style="color: #009000">E</span>asy<span style="color: #f00;">M</span>arket</a>
+          <a href="entrada.php"><span style="color: #009000">W</span>eb<span style="color: #f00;">S</span>ystems</a>
         </div>
         <div class="colunasTop floatRight loginOptionsHeader">
           <div class="colunasTop usuarioHeader">

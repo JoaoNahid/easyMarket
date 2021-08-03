@@ -7,9 +7,10 @@
   $query = "SELECT * FROM clientes WHERE idCliente='$idUsuario'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   while($row = mysqli_fetch_assoc($result)) {
-    $nomeUsuario = $row['nomeCliente'];
-    $emailUsuario = $row['emailCliente'];
-    $funcaoUsuario = $row['funcaoCliente'];
+    $nomeUsuario = $row['nome'];
+    $emailUsuario = $row['email'];
+    $funcaoUsuario = $row['funcao'];
+    $loginUsuario = $row['login'];
   }
 ?>
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
     <header id="header">
       <div class="container">
         <div class="colunasTop logoHeader">
-          <a href="entrada.php"><span style="color: #009000">E</span>asy<span style="color: #f00;">M</span>arket</a>
+          <a href="entrada.php"><span style="color: #009000">W</span>eb<span style="color: #f00;">S</span>ystems</a>
         </div>
         <div class="colunasTop floatRight loginOptionsHeader">
           <div class="colunasTop usuarioHeader">
