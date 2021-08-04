@@ -66,17 +66,10 @@
               if($funcaoUsuario == 'adm'){
                 echo '
                 <li>
-                  <a class="btnHover" onclick="abrirMenu()">Home</a>
-                    <ul id="menuAlteracao" class="boxMenuAlteracao">
-                      <a href="editarBanner.php?idBanner"> <li>Banner</li> </a>
-                      <a href="editarSobre.php?idSobre"> <li>Sobre</li> </a>
-                      <a href="listaProjetos.php"> <li>Projetos</li> </a>
-                      <a href="listaComissarios.php"> <li>Comissários</li> </a>
-                      <a href="listaDuvidas.php"> <li>Dúvidas</li> </a>
-                    </ul>
+                  <a class="btnHover" href="listaProdutos.php">Produtos</a>
                 </li>
                 <li>
-                  <a class="btnHover" href="bazar21.php">Bazar 21</a>
+                  <a class="btnHover" href="listaEncarte.php">Encarte</a>
                 </li>
                 ';
               }
@@ -94,9 +87,3 @@
         </div>
       </div>
     </section>
-    <script>
-      function abrirMenu(){
-        var element = document.getElementById('menuAlteracao');
-        element.classList.toggle('menuAberto');
-      }
-    </script>

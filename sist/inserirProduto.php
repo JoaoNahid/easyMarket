@@ -4,24 +4,26 @@ include('includes/header.php');
 if (isset($_GET['idProduto'])) {
   $idProduto = $_GET['idProduto'];
 
-  $query = "SELECT * FROM bazar WHERE idProduto = '$idProduto'";
+  $query = "SELECT * FROM produtos WHERE idProduto = '$idProduto'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   while($row = mysqli_fetch_assoc($result)) {
-    $produto = $row['produto'];
-    $categoria = $row['categoria'];
-    $sexo = $row['sexo'];
-    $cor = $row['cor'];
-    $tamanho = $row['tamanho'];
-    $status = $row['status'];
-    $descricao = $row['descricao'];
-    $estado = $row['estado'];
-    $preco = $row['preco'];
+    $nomeProduto = $row['nomeProduto'];
+    $marcaProduto = $row['marcaProduto'];
+    $idProduto = $row['idProduto'];
+    $categoriaProduto = $row['idCategoria'];
+    $precoProduto = $row['precoProduto'];
+    $precoPromocao = $row['precoPromocao'];
+    $fotoProduto = $row['fotoProduto'];
+    $pesoProduto = $row['pesoProduto'];
+    $localizacaoProduto = $row['localizacaoProduto'];
+    $descricaoProduto = $row['descricaoProduto'];
+    $codigoProduto = $row['codigoProduto'];
 
   }
 }
 if (isset($_GET['itemRemovido'])) {
   $idProdutoRemovido = $_GET['itemRemovido'];
-  $query = "UPDATE bazar SET removido='sim' WHERE idProduto = '$idProdutoRemovido'";
+  $query = "UPDATE produtos SET removido='sim' WHERE idProduto = '$idProdutoRemovido'";
   $result = mysqli_query($conn, $query);
   if (mysqli_affected_rows($conn)) {
     header('Location: bazar21.php?Item removido com sucesso');
@@ -69,7 +71,7 @@ if(isset($_FILES['arquivo'])){
     $vendido = '';
   }
 
-  $query = "INSERT INTO bazar (produto, categoria, foto, sexo, cor, tamanho, estado, descricao, status, vendido, preco, removido) VALUES ('$produto', '$categoria', '$foto', '$sexo', '$cor', '$tamanho', '$estado', '$descricao', '$status', '$vendido', '$preco', '')";
+  $query = "INSERT INTO produtos (produto, categoria, foto, sexo, cor, tamanho, estado, descricao, status, vendido, preco, removido) VALUES ('$produto', '$categoria', '$foto', '$sexo', '$cor', '$tamanho', '$estado', '$descricao', '$status', '$vendido', '$preco', '')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: bazar21.php?Operacao realizada com sucesso');
@@ -129,7 +131,7 @@ if(isset($_POST['salvar'])){
     $vendido = '';
   }
 
-  $query = "UPDATE bazar SET produto='$produto', categoria='$categoria', sexo='$sexo', preco='$preco', cor='$cor', tamanho='$tamanho', estado='$estado', descricao='$descricao', status='$status', vendido='$vendido', foto='$foto' WHERE idProduto = '$idProduto'";
+  $query = "UPDATE produtos SET produto='$produto', categoria='$categoria', sexo='$sexo', preco='$preco', cor='$cor', tamanho='$tamanho', estado='$estado', descricao='$descricao', status='$status', vendido='$vendido', foto='$foto' WHERE idProduto = '$idProduto'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: bazar21.php?Alteracao realizada com sucesso');
@@ -172,29 +174,33 @@ if(isset($_POST['salvar'])){
 
 
     <form class="boxInputs" method="post" enctype="multipart/form-data">
-      <p class="tituloCampo">Produto</p>
-      <input type="text" autocomplete="off" placeholder="Ex.: Camiseta gola v" name="produto" value="<?php if(isset($_GET['idProduto'])){echo $produto;} ?>">
+      <p class="tituloCampo">Nome do Produto</p>
+      <input type="text" autocomplete="off" name="nomeProduto" value="<?php if(isset($_GET['idProduto'])){echo $nomeProduto;} ?>">
 
       <p class="tituloCampo">Categoria</p>
       <select class="" name="categoria">
         <option value="">Selecione uma opção</option>
-        <option value="livro" <?php if(isset($categoria) AND $categoria == 'livro'){echo 'selected';} ?>>Livro</option>
-        <option value="roupa" <?php if(isset($categoria) AND $categoria == 'roupa'){echo 'selected';} ?>>Roupa</option>
-        <option value="calcado" <?php if(isset($categoria) AND $categoria == 'calcado'){echo 'selected';} ?>>calçados</option>
-        <option value="acessorio" <?php if(isset($categoria) AND $categoria == 'acessorio'){echo 'selected';} ?>>Acessórios</option>
-        <option value="outros" <?php if(isset($categoria) AND $categoria == 'outros'){echo 'selected';} ?>>Outros</option>
+        <?php
+          $query = "SELECT * FROM categorias WHERE removido != 'sim' ORDER BY nomeCategoria";
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          while($row = mysqli_fetch_assoc($result)) {
+            $idCategoriaProduto = $row['idCategoria'];
+            $nomeCategoriaProduto = $row['nomeCategoria'];
+          ?>
+              <option value="<?php echo $idCategoriaProduto ?>" <?php if(isset($idCategoria) AND $idCategoria == $idCategoriaProduto){echo 'selected';} ?>><?php echo $nomeCategoriaProduto ?></option>
+        <?php
+          }
+        ?>
       </select>
 
-      <p class="tituloCampo">Sexo</p>
-      <select class="" name="sexo">
-        <option value="">Selecione uma opção</option>
-        <option value="feminino" <?php if(isset($sexo) AND $sexo == 'feminino'){echo 'selected';} ?>>Feminino</option>
-        <option value="masculino" <?php if(isset($sexo) AND $sexo == 'masculino'){echo 'selected';} ?>>Masculino</option>
-        <option value="unissex" <?php if(isset($sexo) AND $sexo == 'unissex'){echo 'selected';} ?>>Unissex</option>
-      </select>
+      <p class="tituloCampo">Marca do Produto</p>
+      <input type="text" autocomplete="off" name="marcaProduto" value="<?php if(isset($_GET['idProduto'])){echo $marcaProduto;} ?>">
 
-      <p class="tituloCampo">Preço</p>
-      <input type="number" autocomplete="off" step=",01" placeholder="ex.: preto como detalhes brancos" name="preco" value="<?php if(isset($_GET['idProduto'])){echo $preco;} ?>">
+      <p class="tituloCampo">Preço do Produto</p>
+      <input type="number" autocomplete="off" step=",01" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
+
+      <p class="tituloCampo">Preço em Promoção</p>
+      <input type="number" autocomplete="off" step=",01" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
 
       <p class="tituloCampo">Cor</p>
       <input type="text" autocomplete="off" placeholder="ex.: preto como detalhes brancos" name="cor" value="<?php if(isset($_GET['idProduto'])){echo $cor;} ?>">
