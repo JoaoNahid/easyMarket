@@ -18,6 +18,8 @@ if (isset($_GET['idProduto'])) {
     $localizacaoProduto = $row['localizacaoProduto'];
     $descricaoProduto = $row['descricaoProduto'];
     $codigoProduto = $row['codigoProduto'];
+    $avaliacaoProduto = $row['avaliacaoProduto'];
+    $destaqueProduto = $row['destaqueProduto'];
 
   }
 }
@@ -32,15 +34,19 @@ if (isset($_GET['itemRemovido'])) {
 
 if(isset($_POST['cadastrar'])){
 
+  $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
   $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
-  $categoria = htmlspecialchars($_POST['categoria'], ENT_QUOTES, 'utf-8');
-  $sexo = htmlspecialchars($_POST['sexo'], ENT_QUOTES, 'utf-8');
-  $cor = htmlspecialchars($_POST['cor'], ENT_QUOTES, 'utf-8');
-  $tamanho = htmlspecialchars($_POST['tamanho'], ENT_QUOTES, 'utf-8');
-  $status = htmlspecialchars($_POST['status'], ENT_QUOTES, 'utf-8');
-  $descricao = htmlspecialchars($_POST['descricao'], ENT_QUOTES, 'utf-8');
-  $estado = htmlspecialchars($_POST['estado'], ENT_QUOTES, 'utf-8');
-  $preco = htmlspecialchars($_POST['preco'], ENT_QUOTES, 'utf-8');
+  $fotoProduto = htmlspecialchars($_POST['fotoProduto'], ENT_QUOTES, 'utf-8');
+  $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
+  $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
+  $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
+  $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
+  $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
+  $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
+  $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
+  $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
+  $destaqueProduto = htmlspecialchars($_POST['destaqueProduto'], ENT_QUOTES, 'utf-8');
+
 
   $msg = false;
 if(isset($_FILES['arquivo'])){
@@ -71,7 +77,7 @@ if(isset($_FILES['arquivo'])){
     $vendido = '';
   }
 
-  $query = "INSERT INTO produtos (produto, categoria, foto, sexo, cor, tamanho, estado, descricao, status, vendido, preco, removido) VALUES ('$produto', '$categoria', '$foto', '$sexo', '$cor', '$tamanho', '$estado', '$descricao', '$status', '$vendido', '$preco', '')";
+  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: bazar21.php?Operacao realizada com sucesso');
