@@ -92,7 +92,7 @@ if(isset($_FILES['arquivo'])){
 
 }
 if(isset($_POST['salvar'])){
-  $produto = htmlspecialchars($_POST['produto'], ENT_QUOTES, 'utf-8');
+  $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
   $categoria = htmlspecialchars($_POST['categoria'], ENT_QUOTES, 'utf-8');
   $preco = htmlspecialchars($_POST['preco'], ENT_QUOTES, 'utf-8');
   $sexo = htmlspecialchars($_POST['sexo'], ENT_QUOTES, 'utf-8');
