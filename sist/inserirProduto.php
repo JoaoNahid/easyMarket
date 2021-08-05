@@ -32,7 +32,7 @@ if (isset($_GET['itemRemovido'])) {
 
 if(isset($_POST['cadastrar'])){
 
-  $produto = htmlspecialchars($_POST['produto'], ENT_QUOTES, 'utf-8');
+  $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
   $categoria = htmlspecialchars($_POST['categoria'], ENT_QUOTES, 'utf-8');
   $sexo = htmlspecialchars($_POST['sexo'], ENT_QUOTES, 'utf-8');
   $cor = htmlspecialchars($_POST['cor'], ENT_QUOTES, 'utf-8');
@@ -156,7 +156,7 @@ if(isset($_POST['salvar'])){
 <div class="container">
   <div class="conteudoFormulario" method="post">
     <div class="cabecalhoForm">
-      <h3 class="colunasTop"><?php if(isset($_GET['idProduto'])){echo 'Editar Projeto';}else{ echo 'Adicionar Projeto';} ?></h3>
+      <h3 class="colunasTop"><?php if(isset($_GET['idProduto'])){echo 'Editar Produto';}else{ echo 'Adicionar Produto';} ?></h3>
 
       <div class="btnsTop floatRight colunasTop">
         <?php
