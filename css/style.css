@@ -28,7 +28,7 @@
      padding: 0 0 10px 0;
      font-weight: normal;
      line-height: normal;
-     color: #111111;
+     color: #ff0000;
      margin: 0
 }
  h1 {
@@ -55,7 +55,7 @@
      box-sizing: border-box;
 }
  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-     color: #212121;
+     color: #ff0000;
      text-decoration: none!important;
      opacity: 1
 }
