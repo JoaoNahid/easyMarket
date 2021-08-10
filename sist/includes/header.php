@@ -4,12 +4,12 @@
   include('verificaLogin.php');
 
   $idUsuario = $_SESSION['idCliente'];
-  $query = "SELECT * FROM clientes WHERE idCliente='$idUsuario'";
+  $query = "SELECT * FROM usuarios WHERE idUsuario='$idUsuario'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   while($row = mysqli_fetch_assoc($result)) {
-    $nomeUsuario = $row['nomeCliente'];
-    $emailUsuario = $row['emailCliente'];
-    $funcaoUsuario = $row['funcaoCliente'];
+    $nomeUsuario = $row['nome'];
+    $emailUsuario = $row['email'];
+    $funcaoUsuario = $row['funcao'];
   }
 ?>
 <!DOCTYPE html>

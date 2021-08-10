@@ -1,6 +1,5 @@
 <?php
 include('includes/header.php');
-// include('includes/menuAlteracao.php');
 
 
 
@@ -64,17 +63,18 @@ include('includes/header.php');
                 $precoProduto = $row['precoProduto'];
                 $fotoProduto = $row['fotoProduto'];
                 $pesoProduto = $row['pesoProduto'];
+                $unidadePeso = $row['unidadePeso'];
                 $codigoProduto = $row['codigoProduto'];
                 $descricaoProduto = $row['descricaoProduto'];
 
                 echo '
                 <div class="col-md-4">
                   <div class="itemLista">
-                    <a href="inserirProduto.php?idProduto='.$idProduto.'"><div class="imgProduto" style="background: url(sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover;"></div></a>
+                    <a href="inserirProduto.php?idProduto='.$idProduto.'"><div class="imgProduto" style="background: url(uploads/'.$fotoProduto.') no-repeat center; background-size: cover;"></div></a>
                     <div class="descProduto">
-                      <a href="inserirProduto.php?idProduto='.$idProduto.'"><h3>'.$nomeProduto.' '.$marcaProduto.'</h3></a>
-                      <p>'.$pesoProduto.'</p>
-                      <p>'.$codigoProduto.'</p>
+                      <a href="inserirProduto.php?idProduto='.$idProduto.'"><h3>'.$nomeProduto.' - '.$marcaProduto.'</h3></a>
+                      <p>'.$pesoProduto.' '.$unidadePeso.'</p>
+                      <p><strong>Código: </strong> '.$codigoProduto.'</p>
                       <h4><strong>R$ </strong>'.$precoProduto.'</h4>
                     </div>
                   </div>

@@ -42,19 +42,19 @@ if(isset($_POST['logar'])){
     ';
   }
   else{
-    $query = "SELECT nomeCliente FROM clientes WHERE nomeCliente='$login'";
+    $query = "SELECT nome FROM usuarios WHERE usuario='$login'";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0){
-      $query = "SELECT * FROM clientes WHERE senhaCliente ='$senha'";
+      $query = "SELECT * FROM usuarios WHERE senha ='$senha'";
       $result = mysqli_query($conn, $query);
       if(mysqli_num_rows($result) == 1){
         while($row = mysqli_fetch_assoc($result)) {
-          $idUsuario = $row['idCliente'];
-          $funcaoUsuario = $row['funcaoCliente'];
+          $idUsuario = $row['idUsuario'];
+          $funcaoUsuario = $row['funcao'];
         }
         $_SESSION['logado'] = true;
-        $_SESSION['idCliente'] = $idUsuario;
-        $_SESSION['funcaoCliente'] = $funcaoUsuario;
+        $_SESSION['idUsuario'] = $idUsuario;
+        $_SESSION['funcao'] = $funcaoUsuario;
         header('Location: entrada.php');
       }
       else{
