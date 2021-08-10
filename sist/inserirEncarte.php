@@ -11,11 +11,11 @@ include('includes/header.php');
 <div class="container">
   <div class="conteudoFormulario" method="post">
     <div class="cabecalhoForm">
-      <h3 class="colunasTop">Encarte</h3>
+      <h3 class="colunasTop">Criando Encarte</h3>
 
       <div class="btnsTop floatRight colunasTop">
         <div class="btnAdicionar colunasTop ">
-          <a href="inserirEncarte.php"><span class="">Criar Encarte</span> <i class="fas fa-plus"></i></a>
+          <a href="criarEncarte.php"><span class="">Próximo</span></a>
         </div>
       </div>
     </div>
