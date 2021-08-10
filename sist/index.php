@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   include('conexao.php');
 ?>
@@ -16,7 +16,7 @@
     <header id="header">
       <div class="container">
         <div class="colunasTop logoHeader">
-          <a href="entrada.php"><span style="color: #009000">W</span>eb<span style="color: #f00;">S</span>ystems</a>
+          <a href="entrada.php"><span style="color: rgb(193, 25, 38)">E</span>asy<span style="color: rgb(193, 25, 38);">M</span>arket</a>
         </div>
         <div class="colunasTop floatRight loginOptionsHeader">
           <div class="colunasTop usuarioHeader">
