@@ -258,7 +258,7 @@
 /*--------------------------------------------------------------------- header ---------------------------------------------------------------------*/
  header {
      min-height: 90px;
-     background: #212020;
+     background: #C11926;
      padding: 15px 0;
      position: fixed;
      width: 100%;
@@ -410,9 +410,9 @@
      color: #f8c90d !important;
 }
 .resip_section {
-    background: rgb(193, 25, 38);
+    background: #C11926;
     margin-top: 0;
-    padding: 60px 0px 50px 0px;
+    padding: 60px 0px 0px 0px;
     border-top: solid rgba(255,255,255,.1) 1px;
     box-shadow: inset 0 10px 30px -16px #000;
 }
@@ -639,7 +639,7 @@
 /** end Our Client **/
 /*--------------------------------------------------------------------- footer ---------------------------------------------------------------------*/
  .footer {
-     background: #d8b00f;
+     background: #C11926;
      padding-top:90px;
      margin-top: 90px;
 }
@@ -936,4 +936,15 @@
 /* ALTERAÇÕES COMPLEMENTARES */
 .boxFormLogin{
   padding: 35px 50px;
+}
+.product_blog_img{
+  text-align: center;
+}
+
+.containerSlider{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }

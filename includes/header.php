@@ -13,6 +13,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <!-- flickity carroussel -->
+    <link rel="stylesheet" href="css/flickity-docs.css" media="screen">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- owl css -->
@@ -86,7 +88,7 @@
                                 <li class="dinone"><img style="margin-right: 15px;" src="images/mail_icon.png" alt="#"><a href="#">atendimento@easymarket.com</a></li>
 
                                 <li class="button_user"><a class="button active" href="login.php">Login</a><a class="button" href="login.php">Registrar</a></li>
-                                <li><img style="margin-right: 15px;" src="images/search_icon.png" alt="#"></li>
+                                
                                 <li>
                                     <button type="button" id="sidebarCollapse">
                                         <img src="images/menu_icon.png" alt="#">
