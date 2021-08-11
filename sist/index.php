@@ -42,15 +42,15 @@ if(isset($_POST['logar'])){
     ';
   }
   else{
-    $query = "SELECT nome FROM usuarios WHERE usuario='$login'";
+    $query = "SELECT nome FROM usuarios WHERE nome ='$login'";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0){
       $query = "SELECT * FROM usuarios WHERE senha ='$senha'";
       $result = mysqli_query($conn, $query);
-      if(mysqli_num_rows($result) == 1){
-        while($row = mysqli_fetch_assoc($result)) {
-          $idUsuario = $row['idUsuario'];
-          $funcaoUsuario = $row['funcao'];
+      if(mysqli_num_rows($result) > 0){
+      while($row = mysqli_fetch_assoc($result)) {
+          echo $idUsuario = $row['idUsuario'];
+          echo $funcaoUsuario = $row['funcao'];
         }
         $_SESSION['logado'] = true;
         $_SESSION['idUsuario'] = $idUsuario;
