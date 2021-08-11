@@ -1,31 +1,44 @@
 <?php
-<<<<<<< HEAD
+
 include('includes/header.php');
-include('sist/conexao.php');
+
+$host = 'localhost';
+  $user = 'root';
+  $passwd = 'vertrigo';
+  $bd = 'easymarketcliente';
+  $conn = mysqli_connect($host, $user, $passwd, $bd);
+	if(!$conn) {
+		die('Falha ao conectar no servidor: ' . mysqli_error());
+	}
+
+	mysqli_query($conn, "SET SESSION sql_mode='';");
+	mysqli_set_charset($conn, 'utf8');
+	mysqli_query($conn, "SET NAMES 'utf8';");
+	mysqli_query($conn, "SET CHARACTER SET 'utf8';");
+	mysqli_query($conn, "SET COLLATION_CONNECTION = 'utf8_unicode_ci';");
+
+	date_default_timezone_set('America/Sao_Paulo');
+	setlocale(LC_TIME, 'portuguese');
 
 if (isset($_POST['cadastrar'])) {
-    $cpf = htmlspecialchars($_POST['cpf'], ENT_QUOTES, 'utf-8');
-    $idade = htmlspecialchars($_POST['idade'], ENT_QUOTES, 'utf-8');
-    $nome = htmlspecialchars($_POST['nome'], ENT_QUOTES, 'utf-8');
-    $sobrenome = htmlspecialchars($_POST['sobrenome'], ENT_QUOTES, 'utf-8');
-    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'utf-8');
-    $funcao = htmlspecialchars($_POST['funcao'], ENT_QUOTES, 'utf-8');
-    $senha = htmlspecialchars($_POST['senha'], ENT_QUOTES, 'utf-8');
+    $nomeCliente = htmlspecialchars($_POST['nomeCliente'], ENT_QUOTES, 'utf-8');
+    $emailCliente = htmlspecialchars($_POST['emailCliente'], ENT_QUOTES, 'utf-8');
+    $senhaCliente = htmlspecialchars($_POST['senhaCliente'], ENT_QUOTES, 'utf-8');
+    $telefoneCliente = htmlspecialchars($_POST['telefoneCliente'], ENT_QUOTES, 'utf-8');
+    $idadeCliente = htmlspecialchars($_POST['idadeCliente'], ENT_QUOTES, 'utf-8');
     $confirmaSenha = htmlspecialchars($_POST['confirmaSenha'], ENT_QUOTES, 'utf-8');
 
-    $nomeCompleto = $nome.' '.$sobrenome;
-
-    if($senha === $confirmaSenha){
-      $senha = md5($senha);
-      $query = "INSERT INTO clientes  (cpfCliente, nomeCliente, emailCliente, senhaCliente, funcaoCliente, idadeCliente) VALUES ('$cpf','$nomeCompleto', '$email', '$senha', '$funcao', '$idade')";
+    if($senhaCliente === $confirmaSenha){
+      $senhaCliente = md5($senhaCliente);
+      $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente, idadeCliente) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', '$idadeCliente')";
       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
       if (mysqli_affected_rows($conn)) {
-        header('Location: index.html?Alteracao realizada com sucesso');
+        header('Location: index.php?Cadastro realizado com sucesso');
       }
       else{
         echo '
           <script>
-            window.alert("Erro ao salvar, tente novamente!")
+            window.alert("Erro ao cadastrar, tente novamente!")
           </script>
         ';
       }
@@ -41,7 +54,7 @@ if (isset($_POST['cadastrar'])) {
 ?>
 
 <head>
-    <!-- basic -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- mobile metas -->
@@ -66,7 +79,7 @@ if (isset($_POST['cadastrar'])) {
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
-<!-- body -->
+
 
 <body class="main-layout about_page">
     <!-- loader  -->
@@ -114,41 +127,51 @@ if (isset($_POST['cadastrar'])) {
             <div class="container-fluid">
                 <div class="row">
                   <div class=" col-md-12">
-                    <h2>JÁ TENHO CADASTRO <strong class="white"> QUERO ME CADASTRAR</strong></h2>
-                  </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <h2><strong> JÁ TENHO CADASTRO </strong></h2>
+                  
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                       
-                        <form class="main_form">
+                        <form class="col-xl-6" method="post">
                             <div class="row">
                              
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Email" type="text" name="Email">
+                                    <input class="form-control" placeholder="Email" type="text" name="emailCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Senha" type="text" name="Senha">
+                                    <input class="form-control" placeholder="Senha" type="text" name="senhaCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <button class="send">Entrar</button>
                                 </div>
                             </div>
+                            </div>
+                            </div>
                         </form>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class=" col-md-12">
+                  <h2> QUERO ME CADASTRAR</h2>
                         <div class="img-box">
-                        <form class="main_form">
+                        <form class="col-xl-6 " method="post">
                             <div class="row">
                              
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Email" type="text" name="Email">
+                                    <input class="form-control" placeholder="Nome" type="text" name="nomeCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Crie sua senha" type="text" name="Crie sua senha">
+                                    <input class="form-control" placeholder="Email" type="text" name="emailCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Confirme a senha" type="text" name="Confirme a senha">
+                                    <input class="form-control" placeholder="Crie sua senha" type="text" name="senhaCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <input class="form-control" placeholder="Digite o CPF" type="text" name="Digite o CPF"><
+                                    <input class="form-control" placeholder="Confirme a senha" type="text" name="confirmaSenha">
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-control" placeholder="Telefone" type="text" name="telefoneCliente">
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-control" placeholder="Idade" type="text" name="idadeCliente">
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <button class="send">Cadastrar</button>
@@ -158,6 +181,7 @@ if (isset($_POST['cadastrar'])) {
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="footer_logo">
@@ -211,95 +235,3 @@ if (isset($_POST['cadastrar'])) {
     </script>
 
 </body>
-
-?>
-
-=======
-  include('includes/header.php');
-?>
-
-    <div class="yellow_bg">
-      <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="title">
-                     <h2>Login</h2>
-
-                  </div>
-               </div>
-            </div>
-      </div>
-
-      <section class="loginArea">
-        <div class="container-fluid">
-          <div class="row">
-
-            <!-- FORMULÁRIO LOGIN -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <div class="boxFormLogin">
-                  <h2>Já é cliente? Faça login!</h2>
-                  <form class="" method="post">
-                      <div class="row">
-
-                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <input class="form-control" placeholder="Login" type="text" name="login">
-                          </div>
-
-                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <input class="form-control" placeholder="Senha" type="password" name="senha">
-                          </div>
-
-                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <button class="send" name="efetuarLogin">Login</button>
-                          </div>
-
-                      </div>
-                  </form>
-                </div>
-            </div>
-
-            <!-- FORMULÁRIO CADASTRO -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                <div class="boxFormLogin">
-                  <h2>Não tem cadastro? Faça um agora mesmo!</h2>
-                  <form class="" method="post">
-                    <div class="row">
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Nome" type="text" name="nome">
-                      </div>
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Email" type="text" name="email">
-                      </div>
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Teleone" type="text" name="telefone">
-                      </div>
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Senha" type="password" name="criarSenha">
-                      </div>
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Confirmar senha" type="password" name="confirmarSenha">
-                      </div>
-
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <button class="send">Cadastrar</button>
-                      </div>
-
-                    </div>
-                  </form>
-                </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-    </div>
-<?php
-  include('includes/footer.php');
-?>
->>>>>>> d282a34c7f0c6e0272ef5ea93cfe85f2db6a7fd6
