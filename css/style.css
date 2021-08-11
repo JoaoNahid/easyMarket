@@ -932,3 +932,8 @@
      color: #fff;
      font-weight: 500;
 }
+
+/* ALTERAÇÕES COMPLEMENTARES */
+.boxFormLogin{
+  padding: 35px 50px;
+}
