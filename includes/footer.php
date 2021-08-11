@@ -10,27 +10,19 @@
                 </div>
                 <div class="col-md-12">
                     <ul class="lik">
-                        <li > <a href="index.html">Home</a></li>
-                        <li class="active"> <a href="about.html">About</a></li>
-                        <li> <a href="recipe.html">Recipe</a></li>
-                        <li> <a href="blog.html">blog</a></li>
-                        <li> <a href="contact.html">Contact us</a></li>
+                        <li > <a href="index.php">Home</a></li>
+                        <li class="active"> <a href="sobre.php">Sobre</a></li>
+                        <li> <a href="encarte.php">Encarte</a></li>
+                        <li> <a href="mercado.php">Mercado</a></li>
+                        <li> <a href="contato.php">Contato</a></li>
                     </ul>
                 </div>
-                <div class="col-md-12">
-                    <div class="new">
-                        <h3>Newsletter</h3>
-                        <form class="newtetter">
-                            <input class="tetter" placeholder="Your email" type="text" name="Your email">
-                            <button class="submit">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="copyright">
             <div class="container">
-                <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+                <p>© 2021 All Rights Reserved. Design by<a href="index.php"> Easy Market Group</a></p>
             </div>
         </div>
     </div>
@@ -47,6 +39,7 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/custom.js"></script>
  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+ <script src="js/flickity-docs.min.js"></script>
 
  <script src="js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
