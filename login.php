@@ -3,36 +3,36 @@ include('includes/header.php');
 include('conexao.php');
 
 if (isset($_POST['cadastrar'])) {
-    $nomeCliente = htmlspecialchars($_POST['nomeCliente'], ENT_QUOTES, 'utf-8');
-    $emailCliente = htmlspecialchars($_POST['emailCliente'], ENT_QUOTES, 'utf-8');
-    $senhaCliente = htmlspecialchars($_POST['senhaCliente'], ENT_QUOTES, 'utf-8');
-    $telefoneCliente = htmlspecialchars($_POST['telefoneCliente'], ENT_QUOTES, 'utf-8');
-    $idadeCliente = htmlspecialchars($_POST['idadeCliente'], ENT_QUOTES, 'utf-8');
-    $confirmaSenha = htmlspecialchars($_POST['confirmaSenha'], ENT_QUOTES, 'utf-8');
+  $nomeCliente = htmlspecialchars($_POST['nomeCliente'], ENT_QUOTES, 'utf-8');
+  $emailCliente = htmlspecialchars($_POST['emailCliente'], ENT_QUOTES, 'utf-8');
+  $senhaCliente = htmlspecialchars($_POST['senhaCliente'], ENT_QUOTES, 'utf-8');
+  $telefoneCliente = htmlspecialchars($_POST['telefoneCliente'], ENT_QUOTES, 'utf-8');
+  $idadeCliente = htmlspecialchars($_POST['idadeCliente'], ENT_QUOTES, 'utf-8');
+  $confirmaSenha = htmlspecialchars($_POST['confirmaSenha'], ENT_QUOTES, 'utf-8');
 
-    if($senhaCliente === $confirmaSenha){
-      $senhaCliente = md5($senhaCliente);
-      $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente, idadeCliente) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', '$idadeCliente')";
-      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-      if (mysqli_affected_rows($conn)) {
-        header('Location: index.php?Cadastro realizado com sucesso');
-      }
-      else{
-        echo '
-          <script>
-            window.alert("Erro ao cadastrar, tente novamente!")
-          </script>
-        ';
-      }
+  if($senhaCliente === $confirmaSenha){
+    $senhaCliente = md5($senhaCliente);
+    $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente, idadeCliente) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', '$idadeCliente')";
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    if (mysqli_affected_rows($conn)) {
+      header('Location: index.php?Cadastro realizado com sucesso');
     }
-    else {
+    else{
       echo '
         <script>
-          window.alert("As senhas não conferem.")
+          window.alert("Erro ao cadastrar, tente novamente!")
         </script>
       ';
     }
   }
+  else {
+    echo '
+      <script>
+        window.alert("As senhas não conferem.")
+      </script>
+    ';
+  }
+}
 ?>
     <div class="yellow_bg">
       <div class="container">
