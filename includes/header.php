@@ -32,13 +32,13 @@
 <!-- body -->
 
 <body class="main-layout">
-    <!-- loader  -->
+    <!-- loader  
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="" /></div>
     </div>
 
     <div class="wrapper">
-    <!-- end loader -->
+     end loader -->
 
      <div class="sidebar">
             <!-- Sidebar  -->

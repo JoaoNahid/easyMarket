@@ -1,21 +1,21 @@
 <?php
 include('includes/header.php');
 include('conexao.php');
+include('sist/includes/mostrarErros.php');
 
-if (isset($_POST['cadastrar'])) {
+if (isset($_POST['cadastrarCliente'])) {
   $nomeCliente = htmlspecialchars($_POST['nomeCliente'], ENT_QUOTES, 'utf-8');
   $emailCliente = htmlspecialchars($_POST['emailCliente'], ENT_QUOTES, 'utf-8');
   $senhaCliente = htmlspecialchars($_POST['senhaCliente'], ENT_QUOTES, 'utf-8');
   $telefoneCliente = htmlspecialchars($_POST['telefoneCliente'], ENT_QUOTES, 'utf-8');
-  $idadeCliente = htmlspecialchars($_POST['idadeCliente'], ENT_QUOTES, 'utf-8');
-  $confirmaSenha = htmlspecialchars($_POST['confirmaSenha'], ENT_QUOTES, 'utf-8');
+  $confirmarSenha = htmlspecialchars($_POST['confirmarSenha'], ENT_QUOTES, 'utf-8');
 
-  if($senhaCliente === $confirmaSenha){
+  if($senhaCliente === $confirmarSenha){
     $senhaCliente = md5($senhaCliente);
-    $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente, idadeCliente) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', '$idadeCliente')";
+    echo $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', ' ')";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     if (mysqli_affected_rows($conn)) {
-      header('Location: index.php?Cadastro realizado com sucesso');
+      //header('Location: index.php?Cadastro realizado com sucesso');
     }
     else{
       echo '
@@ -82,19 +82,19 @@ if (isset($_POST['cadastrar'])) {
                     <div class="row">
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Nome" type="text" name="nome">
+                        <input class="form-control" placeholder="Nome" type="text" name="nomeCliente">
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Email" type="text" name="email">
+                        <input class="form-control" placeholder="Email" type="text" name="emailCliente">
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Teleone" type="text" name="telefone">
+                        <input class="form-control" placeholder="Teleone" type="text" name="telefoneCliente">
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" placeholder="Senha" type="password" name="criarSenha">
+                        <input class="form-control" placeholder="Senha" type="password" name="senhaCliente">
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -102,7 +102,7 @@ if (isset($_POST['cadastrar'])) {
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <button class="send">Cadastrar</button>
+                        <button class="send" name="cadastrarCliente">Cadastrar</button>
                       </div>
 
                     </div>
