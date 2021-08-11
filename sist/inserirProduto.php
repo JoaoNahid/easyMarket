@@ -41,6 +41,7 @@ if(isset($_POST['cadastrar'])){
   $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
   $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
   $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
+  $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
   $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
   $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
   $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
@@ -48,16 +49,16 @@ if(isset($_POST['cadastrar'])){
 
 
   if(isset($_FILES['imagem'])){
-    $imagem = $_FILES['imagem']['name'];
+    echo $imagem = $_FILES['imagem']['name'];
     $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
     $formatosImagem = array('png', 'jpg', 'jpeg', 'gif');
     if (in_array($extensao, $formatosImagem)) {
-      $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
+      echo $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
       $diretorio = 'uploads/';
 
       if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novoNome)){
 
-        $fotoProduto = $novoNome;
+        echo $fotoProduto = $novoNome;
       }
       else {
         exit();
@@ -76,7 +77,7 @@ if(isset($_POST['cadastrar'])){
   }
 
 
-  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
+  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, unidadePeso, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', 'unidadePeso', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: listaProdutos.php?Operacao realizada com sucesso');
@@ -99,6 +100,7 @@ if(isset($_POST['salvar'])){
   $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
   $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
   $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
+  $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
   $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
   $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
   $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
@@ -132,7 +134,7 @@ if(isset($_POST['salvar'])){
 
 
 
-  $query = "UPDATE produtos SET codigoProduto='$codigoProduto', nomeProduto='$nomeProduto', fotoProduto='$fotoProduto', marcaProduto='$marcaProduto', categoriaProduto='$idCategoria', precoProduto='$precoProduto', precoPromocao='$precoPromocao', pesoProduto='$pesoProduto', localizacaoProduto='$localizacaoProduto', avaliacaoProduto='$avaliacaoProduto', descricaoProduto='$descricaoProduto', destaqueProduto= '$destaqueProduto' WHERE idProduto = '$idProduto'";
+  $query = "UPDATE produtos SET codigoProduto='$codigoProduto', nomeProduto='$nomeProduto', fotoProduto='$fotoProduto', marcaProduto='$marcaProduto', idCategoria='$categoriaProduto', precoProduto='$precoProduto', precoPromocao='$precoPromocao', pesoProduto='$pesoProduto', unidadePeso='$unidadePeso', localizacaoProduto='$localizacaoProduto', avaliacaoProduto='$avaliacaoProduto', descricaoProduto='$descricaoProduto', destaqueProduto= '$destaqueProduto' WHERE idProduto = '$idProduto'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: listaProdutos.php?Alteracao realizada com sucesso');
@@ -155,7 +157,7 @@ if(isset($_POST['salvar'])){
 </script>
 
 <div class="container">
-  <div class="conteudoFormulario" method="post">
+  <div class="conteudoFormulario">
     <div class="cabecalhoForm">
       <h3 class="colunasTop"><?php if(isset($_GET['idProduto'])){echo 'Editar Produto';}else{ echo 'Adicionar Produto';} ?></h3>
 
@@ -188,29 +190,45 @@ if(isset($_POST['salvar'])){
             $idCategoriaProduto = $row['idCategoria'];
             $nomeCategoriaProduto = $row['nomeCategoria'];
           ?>
-              <option value="<?php echo $idCategoriaProduto ?>" <?php if(isset($idCategoria) AND $idCategoria == $idCategoriaProduto){echo 'selected';} ?>><?php echo $nomeCategoriaProduto ?></option>
+              <option value="<?php echo $idCategoriaProduto ?>" <?php if(isset($categoriaProduto) AND $categoriaProduto == $idCategoriaProduto){echo 'selected';} ?>><?php echo $nomeCategoriaProduto ?></option>
         <?php
           }
         ?>
       </select>
 
       <p class="tituloCampo">Código do Produto</p>
-      <input type="number" autocomplete="off" name="codigoProduto" value="<?php if(isset($_GET['idProduto'])){echo $codigoProduto;} ?>">
+      <input type="text" autocomplete="off" name="codigoProduto" value="<?php if(isset($_GET['idProduto'])){echo $codigoProduto;} ?>">
 
       <p class="tituloCampo">Imagem</p>
-      <input type="file" name="fotoProduto" value="">
+      <input type="file" name="imagem" value="">
 
       <p class="tituloCampo">Marca do Produto</p>
       <input type="text" autocomplete="off" name="marcaProduto" value="<?php if(isset($_GET['idProduto'])){echo $marcaProduto;} ?>">
 
       <p class="tituloCampo">Preço do Produto</p>
-      <input type="number" autocomplete="off" step=",01" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
+      <input type="text" autocomplete="off" step=",01" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
 
       <p class="tituloCampo">Preço em Promoção</p>
       <input type="number" autocomplete="off" step=",01" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
 
-      <p class="tituloCampo">Peso do Produto</p>
-      <input type="number" autocomplete="off" step=",01" name="pesoProduto" value="<?php if(isset($_GET['idProduto'])){echo $pesoProduto;} ?>">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="tituloCampo">Peso do Produto</p>
+          <input type="number" autocomplete="off" step=",01" name="pesoProduto" value="<?php if(isset($_GET['idProduto'])){echo $pesoProduto;} ?>">
+        </div>
+        <div class="col-md-4">
+          <p class="tituloCampo">Unidade de Peso</p>
+          <select class="" name="unidadePeso">
+            <option value="">Selecione uma opção</option>
+            <option value="L">Litros</option>
+            <option value="ml">Mililitros</option>
+            <option value="Kg">Quilogramas</option>
+            <option value="mg">Miligramas</option>
+            <option value="g">Gramas</option>
+          </select>
+        </div>
+
+      </div>
 
       <p class="tituloCampo">Localização do Produto</p>
       <input type="text" autocomplete="off" placeholder="ex.: Corredor 6, na área de limpeza." name="localizacaoProduto" value="<?php if(isset($_GET['idProduto'])){echo $localizacaoProduto;} ?>">
