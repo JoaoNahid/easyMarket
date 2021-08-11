@@ -13,14 +13,23 @@ if (isset($_POST['cadastrarCliente'])) {
 
   if ($nomeCliente != '' AND $emailCliente != '' AND $senhaCliente != '' AND $telefoneCliente != '' AND $confirmarSenha != '') {
 
-    $query = "SELECT emailCliente FROM usuarios WHERE emailCliente='$emailCliente'";
+    $query = "SELECT emailCliente FROM clientes WHERE emailCliente='$emailCliente'";
     $result = mysqli_query($conn, $query);
-    if(mysqli_num_rows($result) > 0){
+    if(mysqli_num_rows($result) == 0){
+
       if($senhaCliente === $confirmarSenha){
         $senhaCliente = md5($senhaCliente);
         echo $query = "INSERT INTO clientes  (nomeCliente, emailCliente, senhaCliente, telefoneCliente, removido) VALUES ('$nomeCliente','$emailCliente', '$senhaCliente', '$telefoneCliente', ' ')";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         if (mysqli_affected_rows($conn)) {
+          session_start();
+          $query = "SELECT * FROM clientes WHERE emailCliente='$emailCliente'";
+          $result = mysqli_query($conn, $query);
+          while($row = mysqli_fetch_assoc($result)){
+            $_SESSION['cliente'] = $row['nomeCliente'];
+            $_SESSION['idCliente'] = $row['idCliente'];
+          }
+          $_SESSION['logado'] = true;
           header('Location: index.php?Cadastro realizado com sucesso');
         }
         else{
@@ -63,10 +72,11 @@ if (isset($_POST['cadastrarCliente'])) {
 
 if(isset($_POST['efetuarLogin'])){
   session_start();
-  $login = htmlspecialchars($_POST['login'], ENT_QUOTES, 'utf-8');
-  $senhaLogin = htmlspecialchars($_POST['senhaLogin'], ENT_QUOTES, 'utf-8');
+  $login = trim(htmlspecialchars($_POST['login'], ENT_QUOTES, 'utf-8'));
+  $senhaLogin = trim(htmlspecialchars($_POST['senhaLogin'], ENT_QUOTES, 'utf-8'));
+  $senhaLogin = md5($senhaLogin);
 
-  $query = "SELECT nomeCliente, emailCliente FROM clientes WHERE emailCliente='$login' OR nomeCliente='$login'";
+  $query = "SELECT nomeCliente, emailCliente FROM clientes WHERE emailCliente='$login'";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) > 0) {
     $query = "SELECT * FROM clientes WHERE senhaCliente='$senhaLogin'";
@@ -77,6 +87,7 @@ if(isset($_POST['efetuarLogin'])){
         $_SESSION['idCliente'] = $row['idCliente'];
       }
       $_SESSION['logado'] = true;
+      header('Location: index.php');
     }
     else{
       echo '
