@@ -3,7 +3,7 @@
   include('conexao.php');
   include('verificaLogin.php');
 
-  $idUsuario = $_SESSION['idCliente'];
+  $idUsuario = $_SESSION['idUsuario'];
   $query = "SELECT * FROM usuarios WHERE idUsuario='$idUsuario'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   while($row = mysqli_fetch_assoc($result)) {
@@ -63,7 +63,7 @@
         <div class="container">
           <ul>
             <?php
-              if($funcaoUsuario == 'adm'){
+              if($funcaoUsuario == 'adm' OR $funcaoUsuario == 'dev'){
                 echo '
                 <li>
                   <a class="btnHover" href="listaProdutos.php">Produtos</a>
@@ -76,7 +76,7 @@
               else{
                   echo '
                   <li>
-                    <a class="btnHover" href="bazar21.php">Bazar 21</a>
+                    <a class="btnHover" href="entrada.php">Easy Market</a>
                   </li>
                   ';
 

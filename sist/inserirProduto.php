@@ -28,7 +28,7 @@ if (isset($_GET['itemRemovido'])) {
   $query = "UPDATE produtos SET removido='sim' WHERE idProduto = '$idProdutoRemovido'";
   $result = mysqli_query($conn, $query);
   if (mysqli_affected_rows($conn)) {
-    header('Location: bazar21.php?Item removido com sucesso');
+    header('Location: listaProdutos.php?Item removido com sucesso');
   }
 }
 
