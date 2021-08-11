@@ -1,6 +1,6 @@
 <?php
-   include('includes/header.php');
-   ?>
+  include('includes/header.php');
+?>
 <!-- start slider section -->
 <div class="slider_section">
    <div class="container">
@@ -79,6 +79,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
@@ -90,6 +91,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
@@ -101,6 +103,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
@@ -112,6 +115,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
@@ -123,6 +127,7 @@
                            </div>
                         </div>
                      </div>
+
                      <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
@@ -134,6 +139,7 @@
                            </div>
                         </div>
                      </div>
+
                   </div>
                </div>
             </div>
@@ -141,6 +147,7 @@
       </div>
    </div>
 </section>
+
 <div class="bg_bg">
    <!-- about -->
    <div class="about">
