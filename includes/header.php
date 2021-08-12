@@ -65,9 +65,15 @@
                     <li>
                         <a href="encarte.php">Encarte</a>
                     </li>
-                    <li>
-                        <a href="mercado.php">Mercado</a>
-                    </li>
+                    <?php
+                      if(isset($_SESSION['logado'])){
+                        echo '
+                        <li>
+                            <a href="mercado.php">Mercado</a>
+                        </li>
+                        ';
+                      }
+                    ?>
                     <li>
                         <a href="contato.php">Contato</a>
                     </li>
@@ -96,7 +102,7 @@
                                   if(isset($_SESSION['logado'])){
                                     echo '
                                       <li class="dinone"><a href="login.php">Olá '.$_SESSION['cliente'].'!</a></li>
-                                      <li class="iconeMenu"><a href="minhaCesta.php"><i class="fas fa-shopping-basket"></i></a></li>
+                                      <li class="iconeMenu"><a href="minhaCestaDeCompras.php"><i class="fas fa-shopping-basket"></i></a></li>
                                       <li class="iconeMenu"><a href="arquivosDeSessao/logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
                                     ';
                                   }

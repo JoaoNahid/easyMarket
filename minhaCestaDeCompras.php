@@ -8,7 +8,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                     <h2>Confira Nossos Produtos</h2>
+                     <h2>Cesta de Compras</h2>
 
                   </div>
                </div>
