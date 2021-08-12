@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<?php
+  include('arquivosDeSessao/cadastroELogin.php');
+?>
+<html lang="pt-br">
 <head>
     <!-- basic -->
     <meta charset="utf-8">
@@ -15,6 +17,10 @@
     <meta name="author" content="">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- fontawesome -->
+    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="fontawesome/css/brands.css" rel="stylesheet">
+  <link href="fontawesome/css/solid.css" rel="stylesheet">
     <!-- owl css -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <!-- flickity -->
@@ -32,7 +38,7 @@
 <!-- body -->
 
 <body class="main-layout">
-    <!-- loader  
+    <!-- loader
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="" /></div>
     </div>
@@ -84,10 +90,22 @@
                     <div class="full">
                         <div class="right_header_info">
                             <ul>
-                                <li class="dinone">Entre em contato : <img style="margin-right: 15px;margin-left: 15px;" src="images/phone_icon.png" alt="#"><a href="#">987-654-3210</a></li>
-                                <li class="dinone"><img style="margin-right: 15px;" src="images/mail_icon.png" alt="#"><a href="#">atendimento@easymarket.com</a></li>
 
-                                <li class="button_user"><a class="button active" href="login.php">Login</a><a class="button" href="login.php">Register</a></li>
+                                <li class="dinone"><img style="margin-right: 15px;" src="images/mail_icon.png" alt="#"><a href="#">atendimento@easymarket.com</a></li>
+                                <?php
+                                  if(isset($_SESSION['logado'])){
+                                    echo '
+                                      <li class="dinone"><a href="login.php">Olá '.$_SESSION['cliente'].'!</a></li>
+                                      <li class="iconeMenu"><a href="minhaCesta.php"><i class="fas fa-shopping-basket"></i></a></li>
+                                      <li class="iconeMenu"><a href="arquivosDeSessao/logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+                                    ';
+                                  }
+                                  else{
+                                    echo '
+                                      <li class="button_user"><a class=" active" href="login.php">Login</a><a class="" href="login.php">Registrar</a></li>
+                                    ';
+                                  }
+                                ?>
 
                                     <button type="button" id="sidebarCollapse">
                                         <img src="images/menu_icon.png" alt="#">
