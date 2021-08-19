@@ -71,6 +71,9 @@
                 <li>
                   <a class="btnHover" href="listaEncarte.php">Encarte</a>
                 </li>
+                <li>
+                <a class="btnHover" href="edicao.php">Edição</a>
+              </li>
                 ';
               }
               else{
