@@ -15,6 +15,7 @@ if (isset($_GET['idProduto'])) {
     $precoPromocao = $row['precoPromocao'];
     $fotoBanco = $row['fotoProduto'];
     $pesoProduto = $row['pesoProduto'];
+    $unidadePeso = $row['unidadePeso'];
     $localizacaoProduto = $row['localizacaoProduto'];
     $descricaoProduto = $row['descricaoProduto'];
     $codigoProduto = $row['codigoProduto'];
@@ -77,7 +78,7 @@ if(isset($_POST['cadastrar'])){
   }
 
 
-  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, unidadePeso, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', 'unidadePeso', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
+  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, unidadePeso, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', '$unidadePeso', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
     header('Location: listaProdutos.php?Operacao realizada com sucesso');
@@ -220,14 +221,14 @@ if(isset($_POST['salvar'])){
           <p class="tituloCampo">Unidade de Peso</p>
           <select class="" name="unidadePeso">
             <option value="">Selecione uma opção</option>
-            <option value="L">Litros</option>
-            <option value="ml">Mililitros</option>
-            <option value="Kg">Quilogramas</option>
-            <option value="mg">Miligramas</option>
-            <option value="g">Gramas</option>
+            <option value="L" <?php if(isset($unidadePeso) AND $unidadePeso == "L"){echo 'selected';} ?>>Litros</option>
+            <option value="ml" <?php if(isset($unidadePeso) AND $unidadePeso == "ml"){echo 'selected';} ?>>Mililitros</option>
+            <option value="Kg" <?php if(isset($unidadePeso) AND $unidadePeso == "Kg"){echo 'selected';} ?>>Quilogramas</option>
+            <option value="mg" <?php if(isset($unidadePeso) AND $unidadePeso == "mg"){echo 'selected';} ?>>Miligramas</option>
+            <option value="g" <?php if(isset($unidadePeso) AND $unidadePeso == "g"){echo 'selected';} ?>>Gramas</option>
           </select>
         </div>
-
+      
       </div>
 
       <p class="tituloCampo">Localização do Produto</p>
