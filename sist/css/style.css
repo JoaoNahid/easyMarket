@@ -341,7 +341,7 @@ height: 35px;
 }
 /* LOGIN */
 
-/* lista bazar */
+/* lista Produtos */
 .boxProdutoBazar{
   width: 33%;
   display: inline-block;
@@ -373,4 +373,14 @@ height: 35px;
   color: #212529;
 }
 
-/* lista bazar */
+.listaParaEncarte label{
+  display: inherit;
+  position: relative;
+}
+.listaParaEncarte input[type=checkbox]{
+  display: none;
+}
+.listaParaEncarte input[type=checkbox]:checked + label{
+  background-color: rgba(193,25,38,0.7);
+}
+/* lista Produtos */

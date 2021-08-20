@@ -66,7 +66,7 @@ include('includes/header.php');
                 echo '
                 <div class="col-md-4">
                   <div class="itemLista">
-                    <a href="inserirProduto.php?idProduto='.$idProduto.'"><div class="imgProduto" style="background: url(sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover;"></div></a>
+                    <a href="inserirProduto.php?idProduto='.$idProduto.'"><div class="imgProduto" style="background: url(../sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover;"></div></a>
                     <div class="descProduto">
                       <a href="inserirProduto.php?idProduto='.$idProduto.'"><h3>'.$nomeProduto.' '.$marcaProduto.'</h3></a>
                       <p>'.$pesoProduto.'</p>
