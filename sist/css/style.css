@@ -4,8 +4,10 @@
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
+
 a:hover{
   text-decoration: none !important;
+  color: #fff;
 }
 input, select{
   border-top: 0;
@@ -59,6 +61,9 @@ select:focus{
 .logoHeader a{
   color: #fff;
   text-decoration: none;
+}
+.logoHeader a:hover{
+  color: #fff;
 }
 #header .fas:hover{
   color: #009000;
@@ -331,7 +336,7 @@ height: 35px;
   padding: 10px 20px;
   text-align: center;
   width: 150px;
-  .margin-top: 24px;
+  margin-top: 24px;
 }
 .btnLogin:hover{
   cursor: pointer;
