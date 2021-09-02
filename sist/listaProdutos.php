@@ -1,9 +1,9 @@
 <?php
-include('includes/header.php');
+  include('includes/header.php');
   $query = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
-  
+
   $qtdPorPagina = '5'; // número de registros por página
-  
+
   if(isset($_GET['pagina'])){
     $pagina=$_GET['pagina'];
       $paginaAtual = $pagina;
@@ -11,20 +11,15 @@ include('includes/header.php');
   else {
     $paginaAtual = '1';
   }
-  
-    $inicio = $paginaAtual - 1;
-    $inicio = $inicio * $qtdPorPagina;
-    $limite = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos LIMIT $inicio,$qtdPorPagina";
-    $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
 
-    $numRegistros =  mysqli_num_rows(mysqli_query($conn, $todos)); // verifica o número total de registros
-    $qtdPaginas = $numRegistros / $qtdPorPagina; // verifica o número total de páginas
+  $inicio = $paginaAtual - 1;
+  $inicio = $inicio * $qtdPorPagina;
+  $limite = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto LIMIT $inicio,$qtdPorPagina";
+  $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
 
-    // vamos criar a visualização
-    while ($dados = mysqli_fetch_array($limite)) {
-    $nome = $dados["nome"];
-    echo "Nome: $nome<br>";
-    }
+  $result = mysqli_query($conn, $todos);
+  $numRegistros =  mysqli_num_rows($result); // verifica o número total de registros
+  $qtdPaginas = $numRegistros / $qtdPorPagina; // verifica o número total de páginas
 ?>
 <script src="https://cdn.tiny.cloud/1/5vtboiki0kpmozo3a4zfq8x4wzt3fn6201e6ykccdkvj2bhm/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
@@ -73,7 +68,7 @@ include('includes/header.php');
               $query = "SELECT * FROM produtos WHERE removido != 'sim' AND idCategoria='$categoriaBusca' ORDER BY nomeProduto";
             }
             else{
-              $query = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
+              $query = $limite;
             }
 
               $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -113,7 +108,7 @@ include('includes/header.php');
           echo " <a href='?pagina=$anterior'><- Anterior</a> ";
           }
           echo "|";
-          if ($paginaAtual<$tp) {
+          if ($paginaAtual<$qtdPaginas) {
           echo " <a href='?pagina=$proximo'>Próxima -></a>";
           }
           ?>
