@@ -2,8 +2,6 @@
   include('includes/header.php');
   $query = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
 
-  $qtdPorPagina = '5'; // número de registros por página
-
   if(isset($_GET['pagina'])){
     $pagina=$_GET['pagina'];
       $paginaAtual = $pagina;
@@ -12,9 +10,10 @@
     $paginaAtual = '1';
   }
 
+  $qtdPorPagina = '5'; // número de registros por página
   $inicio = $paginaAtual - 1;
   $inicio = $inicio * $qtdPorPagina;
-  $limite = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto LIMIT $inicio,$qtdPorPagina";
+  $limite = $inicio.','.$qtdPorPagina;
   $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
 
   $result = mysqli_query($conn, $todos);
@@ -65,10 +64,10 @@
             <?php
             if(isset($_GET['categoria'])){
               $categoriaBusca = htmlspecialchars($_GET['categoria'], ENT_QUOTES, 'utf-8');
-              $query = "SELECT * FROM produtos WHERE removido != 'sim' AND idCategoria='$categoriaBusca' ORDER BY nomeProduto";
+              $query = "SELECT * FROM produtos WHERE removido != 'sim' AND idCategoria='$categoriaBusca' ORDER BY nomeProduto LIMIT $limite";
             }
             else{
-              $query = $limite;
+              $query = "SELECT * FROM produtos WHERE removido != 'sim'  ORDER BY nomeProduto LIMIT $limite";
             }
 
               $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
