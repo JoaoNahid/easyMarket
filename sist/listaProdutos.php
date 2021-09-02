@@ -1,8 +1,30 @@
 <?php
 include('includes/header.php');
+  $query = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
+  
+  $qtdPorPagina = '5'; // número de registros por página
+  
+  if(isset($_GET['pagina'])){
+    $pagina=$_GET['pagina'];
+      $paginaAtual = $pagina;
+  }
+  else {
+    $paginaAtual = '1';
+  }
+  
+    $inicio = $paginaAtual - 1;
+    $inicio = $inicio * $qtdPorPagina;
+    $limite = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos LIMIT $inicio,$qtdPorPagina";
+    $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
 
+    $numRegistros =  mysqli_num_rows(mysqli_query($conn, $todos)); // verifica o número total de registros
+    $qtdPaginas = $numRegistros / $qtdPorPagina; // verifica o número total de páginas
 
-
+    // vamos criar a visualização
+    while ($dados = mysqli_fetch_array($limite)) {
+    $nome = $dados["nome"];
+    echo "Nome: $nome<br>";
+    }
 ?>
 <script src="https://cdn.tiny.cloud/1/5vtboiki0kpmozo3a4zfq8x4wzt3fn6201e6ykccdkvj2bhm/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
@@ -40,85 +62,7 @@ include('includes/header.php');
                 ';
               }
             ?>
-<?php
-// Page Count 1.0 - Renan Orati
-// ----------------------------
-// Gerando variáveis de paginas! Legenda:
-// $pa - Página Atual
-// $nrResult - Indice para ser usado no While, (numero de registros - 1)
-// $nrResult - Aqui eu guardo o numero de registros...
-// $pags - Número de Páginas.
-// nReg - Numero de Registros por pagina!
 
-//Coloque aqui a instrução sql de busca!
-$SQL = "SELECT * FROM categorias";
-
-//Executando instrução
-$EXEC = pg_query($SQL);
-
-// Coloque o numero de registros que deve ser mostrado por paginas
-$nReg = 10;
-//recebendo pagina atual
-$pa = $_GET['pa'];
-$pa = (int)$pa;
-$nrResult = pg_num_rows($CHECA);
-$nrResultX = $nrprof;
-/* OBS: Pra ficar claro... a função "pg_num_rows" ela retorna o numero 
-
-de registros gerados pelo select... mas na hora de mostrar, como o php 
-
-gera os resultados apartir de 0 ( 0 .. n ) então eu subtraio 1 no 
-
-numero de registros para nao mostrar registro a mais!*/
-$nrResult -=1;
-//Calculando o numero de paginas
-$pags = (int)(($nrResult/$nReg)+1);
-//Calculando o registro inicial
-$iniciopag = ($nReg*$pa)-$nReg;
-//Calculando o registro final
-$fimpag = ($nReg*$pa)-1;
-
-//Pronto... voce pode utilizar para qualquer consulta...
-//Pra fica mais facil eu vou usar uma consulta de exemplo
-?>
-
-<html>
-<body>
-<table width=200>
-
-<?
-   $i = $iniciopag;
-   while(($i<=$nrResult) and ($i<=$fimpag)){
-   $nome = pg_result($EXEC,$i,"nome");
-   $sobrenome = pg_result($EXEC,$i,"sobrenome");
-?>
-
-<tr>
-   <td width=100><?=$nome?></td>
-   <td width=100><?=$sobrenome?></td>
-</tr>
-
-<? $i+=1; } ?>
-
-<br>
-
-<?
-//Agora vou mostra o " Paginas - 1 2 3 n "
-// $z - é um tipo de contador
-// $pagina - pagina atual... caso for mandar para uma outra pagina substitua pelo nome da pagina
-
-$pagina = $_SERVER['SCRIPT_NAME'];
-$pagina = substr($aaa,1,255);
-
-$z=1;
-while($z<=$pags){
-
-?>
-
-<a href="<?=$pagina?>?pa=<?=$z?>">
-<?=$z." "?>
-</a>
-<? $z+=1; }?>
           </ul>
         </div>
         <div class="col-md-9">
@@ -162,6 +106,17 @@ while($z<=$pags){
               }
             ?>
           </div>
+          <?php
+          $anterior = $paginaAtual -1;
+          $proximo = $paginaAtual +1;
+          if ($paginaAtual>1) {
+          echo " <a href='?pagina=$anterior'><- Anterior</a> ";
+          }
+          echo "|";
+          if ($paginaAtual<$tp) {
+          echo " <a href='?pagina=$proximo'>Próxima -></a>";
+          }
+          ?>
         </div>
 
       </div>
