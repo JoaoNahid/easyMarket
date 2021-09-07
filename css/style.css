@@ -711,14 +711,14 @@
     display: inline-block;
 }
  ul.lik li a {
-     color: #292323;
+     color: #fff;
      font-size: 17px;
      line-height: 27px;
      padding: 0px 25px;
      font-weight: 500;
 }
  ul.lik li a:hover {
-     color: #fff;
+     color: #292323;
 }
  ul.lik li.active a {
     color: #fff;
@@ -954,4 +954,10 @@
 }
 .iconeMenu i{
   font-size: 30px;
+}
+.logo img{
+  width: 82px !important;
+}
+.footer_logo img{
+  width: 150px !important;
 }

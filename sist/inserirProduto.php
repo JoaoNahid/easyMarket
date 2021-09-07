@@ -210,7 +210,7 @@ if(isset($_POST['salvar'])){
       <input type="text" autocomplete="off" step=",01" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
 
       <p class="tituloCampo">Preço em Promoção</p>
-      <input type="number" autocomplete="off" step=",01" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
+      <input type="text" autocomplete="off" step=",01" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
 
       <div class="row">
         <div class="col-md-8">
@@ -228,7 +228,7 @@ if(isset($_POST['salvar'])){
             <option value="g" <?php if(isset($unidadePeso) AND $unidadePeso == "g"){echo 'selected';} ?>>Gramas</option>
           </select>
         </div>
-      
+
       </div>
 
       <p class="tituloCampo">Localização do Produto</p>

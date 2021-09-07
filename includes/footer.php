@@ -5,13 +5,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="footer_logo">
-                      <a href="index.html"><img src="images/logo1.jpg" alt="logo" /></a>
+                      <a href="index.php">
+                        <img src="images/easyLogoBranca.png" alt="logo" />
+                      </a>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <ul class="lik">
                         <li > <a href="index.php">Home</a></li>
-                        <li class="active"> <a href="sobre.php">Sobre</a></li>
+                        <li> <a href="sobre.php">Sobre</a></li>
                         <li> <a href="encarte.php">Encarte</a></li>
                         <li> <a href="mercado.php">Mercado</a></li>
                         <li> <a href="contato.php">Contato</a></li>

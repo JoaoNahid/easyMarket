@@ -28,10 +28,10 @@
               $_SESSION['cliente'] = $row['nomeCliente'];
               $_SESSION['idCliente'] = $row['idCliente'];
             }
-            $_SESSION['logado'] = true;
+            $_SESSION['logadoSite'] = true;
             header('Location: ../index.php?Cadastro realizado com sucesso');
           }
-          
+
           else{
             echo '
               <script>
@@ -86,7 +86,7 @@
           $_SESSION['cliente'] = $row['nomeCliente'];
           $_SESSION['idCliente'] = $row['idCliente'];
         }
-        $_SESSION['logado'] = true;
+        $_SESSION['logadoSite'] = true;
         header('Location: ../index.php');
       }
       else{

@@ -66,7 +66,7 @@
                         <a href="encarte.php">Encarte</a>
                     </li>
                     <?php
-                      if(isset($_SESSION['logado'])){
+                      if(isset($_SESSION['logadoSite'])){
                         echo '
                         <li>
                             <a href="mercado.php">Mercado</a>
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="full">
-                        <a class="logo" href="index.php"><img src="images/logo.png" alt="#" /></a>
+                        <a class="logo" href="index.php"><img src="images/easyLogoBranca.png" alt="#" /></a>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -99,7 +99,7 @@
 
                                 <li class="dinone"><img style="margin-right: 15px;" src="images/mail_icon.png" alt="#"><a href="#">atendimento@easymarket.com</a></li>
                                 <?php
-                                  if(isset($_SESSION['logado'])){
+                                  if(isset($_SESSION['logadoSite'])){
                                     echo '
                                       <li class="dinone"><a href="login.php">Olá '.$_SESSION['cliente'].'!</a></li>
                                       <li class="iconeMenu"><a href="minhaCestaDeCompras.php"><i class="fas fa-shopping-basket"></i></a></li>
