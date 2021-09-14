@@ -104,11 +104,12 @@
           $anterior = $paginaAtual -1;
           $proximo = $paginaAtual +1;
           if ($paginaAtual>1) {
-          echo " <a href='?pagina=$anterior'><- Anterior</a> ";
+          echo " <a href='?pagina=$anterior'><i class='fas fa-angle-left'></i> Anterior</a> ";
           }
+
           echo "|";
           if ($paginaAtual<$qtdPaginas) {
-          echo " <a href='?pagina=$proximo'>Próxima -></a>";
+          echo " <a href='?pagina=$proximo'>Próxima <i class='fas fa-angle-right'></i></a>";
           }
           ?>
         </div>

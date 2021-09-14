@@ -558,33 +558,35 @@
      line-height: 20px;
      display: block;
 }
- .blog .blog_box {
+.produto_box {
     border:#a1a1a1 solid 1px;
      background: #fff;
 }
- .blog .blog_box .blog_img_box {
+.produto_box .blog_img_box {
     background: #fff;
      box-shadow: #ddd 0px 3px 3px 0px;
 }
- .blog .blog_box .blog_img_box figure {
+.produto_box .blog_img_box figure {
     margin:0;
      position: relative;
 }
  .blog_img_box figure img {
     width: 100%;
 }
- .blog .blog_box .blog_img_box figure span {
-     background: #000;
-     top: 0;
-     text-align: center;
-     padding: 7px 10px;
-     color: #fff;
-     right: 0;
-     left: 0;
-     position: absolute;
-     width: 100px;
+.produto_box .blog_img_box figure span {
+  background: #C11926;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+  padding: 7px 10px;
+  color: #e3d105;
+  right: 0;
+  left: 0;
+  position: absolute;
+  width: 100px;
+  text-transform: uppercase;
 }
- .blog .blog_box h3 {
+ .produto_box h3 {
      color: #373535;
      font-size: 22px;
      line-height: 25px;
@@ -593,7 +595,7 @@
      padding-top: 30px;
      padding-bottom: 15px;
 }
- .blog .blog_box p {
+.produto_box p {
      color: #525050;
      font-size: 17px;
      line-height: 28px;
@@ -960,4 +962,27 @@
 }
 .footer_logo img{
   width: 150px !important;
+}
+
+.boxExibicaoProduto{
+  margin-bottom: 30px;
+}
+ .cabecalhosPagina{
+   padding-top: 180px;
+ }
+ .boxOrdenacao{
+   padding: 5px;
+   border: solid 1px #a1a1a1;
+ }
+.boxOrdenacao h1, .boxOrdenacao h2,
+.boxOrdenacao h3, .boxOrdenacao h4,
+.boxOrdenacao h5, .boxOrdenacao h6,
+.boxOrdenacao p, .boxOrdenacao a{
+  color: #191918;
+}
+.ordenacaoDeExibicao ul{
+  padding-left: 20px;
+}
+.ordenacaoDeExibicao h3{
+  padding: 3px;
 }
