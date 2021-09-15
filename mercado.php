@@ -87,6 +87,7 @@
                 $marcaProduto = $row['marcaProduto'];
                 $idProduto = $row['idProduto'];
                 $precoProduto = $row['precoProduto'];
+                $precoPromocao = $row['precoPromocao'];
                 $fotoProduto = $row['fotoProduto'];
                 $pesoProduto = $row['pesoProduto'];
                 $unidadePeso = $row['unidadePeso'];
@@ -98,7 +99,8 @@
            <div class="col-xl-4 col-lg-4 col-md-4 boxExibicaoProduto col-sm-12 mar_bottom">
               <div class="produto_box">
                  <div class="blog_img_box">
-                    <figure><img src="sist/uploads/<?php echo $fotoProduto ?>" alt="#"/>
+                    <figure>
+                      <img src="sist/uploads/<?php echo $fotoProduto ?>" alt="#"/>
                       <?php
                         if ($destaqueProduto == 'sim') {
                           echo '<span>oferta</span>';
@@ -107,7 +109,7 @@
                     </figure>
                  </div>
                  <p><?php echo $nomeProduto.' '.$marcaProduto ?></p>
-                 <h3>R$ <?php echo $precoProduto ?> </h3>
+                 <h3>R$ <?php if($destaqueProduto == 'sim'){echo $precoPromocao; } else{echo $precoProduto;} ?> </h3>
               </div>
            </div>
            <?php
