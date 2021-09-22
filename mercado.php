@@ -3,6 +3,8 @@
   include('arquivosDeSessao/verificaLogin.php');
   include('sist/conexao.php');
 
+  $idCliente = $_SESSION['idCliente'];
+
   $query = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProdutos";
 
   if(isset($_GET['pagina'])){
@@ -107,6 +109,9 @@
                         }
                        ?>
                     </figure>
+                      <a class="addCesta" href="produto.php?adicionarACesta=<?php echo $codigoProduto; ?>">
+                        <i class="fas fa-shopping-basket"></i>
+                      </a>
                  </div>
                  <p><?php echo $nomeProduto.' '.$marcaProduto ?></p>
                  <h3>R$ <?php if($destaqueProduto == 'sim'){echo $precoPromocao; } else{echo $precoProduto;} ?> </h3>

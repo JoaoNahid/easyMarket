@@ -986,3 +986,66 @@
 .ordenacaoDeExibicao h3{
   padding: 3px;
 }
+/* Cesta de compras */
+.boxCestaCompras{
+  width: 100%;
+}
+.itemCesta{
+  width: 100%;
+  padding: 8px;
+  height: 100px;
+  border-bottom: solid 1px #a1a1a1;
+  position: relative;
+}
+.itemCesta h3{
+  display: inline-block;
+  padding: 31px 0
+}
+.nomeProdutoCesta,
+.locProdutoCesta{
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.imagemProdutoCesta{
+  width: 85px;
+  height: 100%;
+  display: inline-block;
+  margin-right: 30px;
+  vertical-align: middle;
+}
+.opcoesItemCesta{
+  height: 100%;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+}
+.opcoesItemCesta button{
+  width: 40px;
+  background-color: transparent;
+  border: 0 none;
+}
+.opcoesItemCesta button i{
+  font-size: 25px;
+  color: #a1a1a1;
+}
+.opcoesItemCesta button i:hover{
+  color: #000;
+  transition: ease-in .3s;
+}
+/* fim da cesta */
+.addCesta{
+  position: absolute;
+  background-color: #C11926;
+  width: 45px;
+  height: 45px;
+  border-top-left-radius: 3px;
+  top: -2px;
+  right: 14px;
+  border-bottom-right-radius: 1px;
+  padding: 8px;
+}
+.addCesta i{
+  color: #fff;
+  font-size: 25px;
+  text-align: center;
+}

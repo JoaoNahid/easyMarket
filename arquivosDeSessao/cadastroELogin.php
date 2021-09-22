@@ -76,7 +76,7 @@
     $senhaLogin = trim(htmlspecialchars($_POST['senhaLogin'], ENT_QUOTES, 'utf-8'));
     $senhaLogin = md5($senhaLogin);
 
-    $query = "SELECT nomeCliente, emailCliente FROM clientes WHERE emailCliente='$login'";
+    $query = "SELECT nomeCliente, emailCliente, idCliente FROM clientes WHERE emailCliente='$login'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
       $query = "SELECT * FROM clientes WHERE senhaCliente='$senhaLogin'";
