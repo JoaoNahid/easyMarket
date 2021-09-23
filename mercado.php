@@ -1,7 +1,7 @@
 <?php
   include('includes/header.php');
   include('arquivosDeSessao/verificaLogin.php');
-  include('sist/conexao.php');
+  include('arquivosDeSessao/conexaoBancoInterno.php');
 
   $idCliente = $_SESSION['idCliente'];
 
@@ -21,7 +21,7 @@
   $limite = $inicio.','.$qtdPorPagina;
   $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
 
-  $result = mysqli_query($conn, $todos);
+  $result = mysqli_query($connBDInterno, $todos);
   $numRegistros =  mysqli_num_rows($result); // verifica o número total de registros
   $qtdPaginas = $numRegistros / $qtdPorPagina; // verifica o número total de páginas
 ?>
@@ -58,7 +58,7 @@
             <ul>
               <?php
                 $query = "SELECT * FROM categorias WHERE removido != 'sim' ORDER BY nomeCategoria";
-                $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
                 while($row = mysqli_fetch_assoc($result)) {
                   $idCategoria = $row['idCategoria'];
                   $nomeCategoria = $row['nomeCategoria'];
@@ -83,7 +83,7 @@
               $query = "SELECT * FROM produtos WHERE removido != 'sim'  ORDER BY nomeProduto LIMIT $limite";
             }
 
-              $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+              $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
               while($row = mysqli_fetch_assoc($result)) {
                 $nomeProduto = $row['nomeProduto'];
                 $marcaProduto = $row['marcaProduto'];
@@ -95,6 +95,14 @@
                 $unidadePeso = $row['unidadePeso'];
                 $codigoProduto = $row['codigoProduto'];
                 $destaqueProduto = $row['destaqueProduto'];
+
+                $query2 = "SELECT * FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProduto'";
+                $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+                if(mysqli_num_rows($result2) > 0){
+                  $verificaSeTemNaCesta = '<a class="addCesta" "><i class="fas fa-check"></i></a>';
+                } else{
+                  $verificaSeTemNaCesta ='<a class="addCesta" href="produto.php?adicionarACesta='.$codigoProduto.'"><i class="fas fa-shopping-basket"></i></a>';
+                }
 
 
             ?>
@@ -109,9 +117,10 @@
                         }
                        ?>
                     </figure>
-                      <a class="addCesta" href="produto.php?adicionarACesta=<?php echo $codigoProduto; ?>">
+                    <?php echo $verificaSeTemNaCesta; ?>
+                      <!-- <a class="addCesta" href="produto.php?adicionarACesta=<?php echo $codigoProduto; ?>">
                         <i class="fas fa-shopping-basket"></i>
-                      </a>
+                      </a> -->
                  </div>
                  <p><?php echo $nomeProduto.' '.$marcaProduto ?></p>
                  <h3>R$ <?php if($destaqueProduto == 'sim'){echo $precoPromocao; } else{echo $precoProduto;} ?> </h3>

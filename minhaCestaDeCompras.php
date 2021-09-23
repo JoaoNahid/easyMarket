@@ -100,13 +100,13 @@
         </div>
       </div>
     </section>
-      <section class="cabecalhosPagina">
+      <section class="">
         <div class="container">
           <div class="boxCestaCompras">
     ';
     while($row = mysqli_fetch_assoc($result)) {
       $codigoProduto = $row['codigoProduto'];
-
+      // $totalCesta = 0;
       $query2 = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
       $result2 = mysqli_query($connBDInterno, $query2) or die(mysqli_error($connBDInterno));
       while($row2 = mysqli_fetch_assoc($result2)) {
@@ -118,6 +118,7 @@
         $fotoProduto = $row2['fotoProduto'];
         $codigoProduto = $row2['codigoProduto'];
 
+        // $totalCesta += $precoProduto;
         echo '
                 <div class="itemCesta">
                   <div class="imagemProdutoCesta" style="background: url(sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover"></div>
@@ -135,11 +136,15 @@
       }
     }
     echo '
+
           </div>
         </div>
       </section>
     ';
   }
+  // <div class="totalCesta">
+  //   <span>R$</span> '.$totalCesta.'
+  // </div>
 ?>
 
 
