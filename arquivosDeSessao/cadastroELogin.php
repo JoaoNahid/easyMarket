@@ -54,7 +54,7 @@
         echo '
           <script>
             window.alert("E-mail já cadastrado.")
-            window.location.href="login.php";
+            window.location.href="../login.php";
           </script>
         ';
       }
@@ -93,6 +93,7 @@
         echo '
           <script>
             window.alert("Email e senha incorretos.")
+            window.location.href="../login.php";
           </script>
         ';
       }
@@ -101,6 +102,7 @@
       echo '
         <script>
           window.alert("Email não encontrado.")
+          window.location.href="../login.php";
         </script>
       ';
     }

@@ -36,114 +36,138 @@ if (isset($_GET['itemRemovido'])) {
 if(isset($_POST['cadastrar'])){
 
   $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
-  $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
-  $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
-  $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
-  $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
-  $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
-  $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
-  $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
-  $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
-  $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
-  $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
-  $destaqueProduto = htmlspecialchars($_POST['destaqueProduto'], ENT_QUOTES, 'utf-8');
+  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  if(mysqli_num_rows($result) == 0){
+    $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
+    $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
+    $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
+    $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
+    $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
+    $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
+    $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
+    $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
+    $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
+    $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
+    $destaqueProduto = htmlspecialchars($_POST['destaqueProduto'], ENT_QUOTES, 'utf-8');
 
 
-  if(isset($_FILES['imagem'])){
-    echo $imagem = $_FILES['imagem']['name'];
-    $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
-    $formatosImagem = array('png', 'jpg', 'jpeg', 'gif');
-    if (in_array($extensao, $formatosImagem)) {
-      echo $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
-      $diretorio = 'uploads/';
+    if(isset($_FILES['imagem'])){
+      echo $imagem = $_FILES['imagem']['name'];
+      $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
+      $formatosImagem = array('png', 'jpg', 'jpeg', 'gif');
+      if (in_array($extensao, $formatosImagem)) {
+        echo $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
+        $diretorio = 'uploads/';
 
-      if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novoNome)){
+        if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novoNome)){
 
-        echo $fotoProduto = $novoNome;
+          echo $fotoProduto = $novoNome;
+        }
+        else {
+          exit();
+        }
       }
-      else {
-        exit();
+      else{
+        echo '
+          <script>
+            window.alert("Formato de imagem não suportado, escolha entre .jpg, .jpeg, .png, ou .gif")
+          </script>
+        ';
       }
+    }
+    else {
+      $fotoProduto = '';
+    }
+
+
+    $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, unidadePeso, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', '$unidadePeso', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    if (mysqli_affected_rows($conn)) {
+      header('Location: listaProdutos.php?Operacao realizada com sucesso');
     }
     else{
       echo '
         <script>
-          window.alert("Formato de imagem não suportado, escolha entre .jpg, .jpeg, .png, ou .gif")
+          window.alert("Erro ao salvar, tente novamente!")
         </script>
       ';
     }
   }
-  else {
-    $fotoProduto = '';
-  }
-
-
-  $query = "INSERT INTO produtos (codigoProduto, nomeProduto, fotoProduto, marcaProduto, idCategoria, precoProduto, precoPromocao, pesoProduto, unidadePeso, localizacaoProduto, avaliacaoProduto, descricaoProduto, destaqueProduto, removido) VALUES ('$codigoProduto', '$nomeProduto', '$fotoProduto', '$marcaProduto', '$categoriaProduto', '$precoProduto', '$precoPromocao', '$pesoProduto', '$unidadePeso', '$localizacaoProduto', '$avaliacaoProduto', '$descricaoProduto', '$destaqueProduto', '')";
-  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-  if (mysqli_affected_rows($conn)) {
-    header('Location: listaProdutos.php?Operacao realizada com sucesso');
-  }
   else{
     echo '
       <script>
-        window.alert("Erro ao salvar, tente novamente!")
+        window.location.href = "inserirProduto.php"
+        window.alert("Código de barras já cadastrado")
       </script>
     ';
   }
-
 }
 if(isset($_POST['salvar'])){
+
   $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
-  $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
-  $fotoProduto = htmlspecialchars($_POST['fotoProduto'], ENT_QUOTES, 'utf-8');
-  $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
-  $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
-  $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
-  $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
-  $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
-  $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
-  $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
-  $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
-  $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
-  $destaqueProduto = htmlspecialchars($_POST['destaqueProduto'], ENT_QUOTES, 'utf-8');
+  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  if(mysqli_num_rows($result) == 0){
+    $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
+    $fotoProduto = htmlspecialchars($_POST['fotoProduto'], ENT_QUOTES, 'utf-8');
+    $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
+    $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
+    $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
+    $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
+    $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
+    $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
+    $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
+    $avaliacaoProduto = htmlspecialchars($_POST['avaliacaoProduto'], ENT_QUOTES, 'utf-8');
+    $descricaoProduto = htmlspecialchars($_POST['descricaoProduto'], ENT_QUOTES, 'utf-8');
+    $destaqueProduto = htmlspecialchars($_POST['destaqueProduto'], ENT_QUOTES, 'utf-8');
 
-  $fotoProduto = $fotoBanco;
-  if(isset($_FILES['imagem'])){
-    $imagem = $_FILES['imagem']['name'];
-    $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
-    $formatosImagem = array('png', 'jpg', 'jpeg', 'gif');
-    if (in_array($extensao, $formatosImagem)) {
-      $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
-      $diretorio = 'uploads/';
+    $fotoProduto = $fotoBanco;
+    if(isset($_FILES['imagem'])){
+      $imagem = $_FILES['imagem']['name'];
+      $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
+      $formatosImagem = array('png', 'jpg', 'jpeg', 'gif');
+      if (in_array($extensao, $formatosImagem)) {
+        $novoNome = md5(time()).rand(1000,99999).'.'.$extensao;
+        $diretorio = 'uploads/';
 
-      if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novoNome)){
+        if(move_uploaded_file($_FILES['imagem']['tmp_name'], $diretorio.$novoNome)){
 
-        $fotoProduto = $novoNome;
+          $fotoProduto = $novoNome;
+        }
+        else {
+          exit();
+        }
       }
-      else {
-        exit();
+      else{
+        echo '
+          <script>
+            window.alert("Formato de imagem não suportado, escolha entre .jpg, .jpeg, .png, ou .gif")
+          </script>
+        ';
       }
+    }
+
+
+
+    $query = "UPDATE produtos SET codigoProduto='$codigoProduto', nomeProduto='$nomeProduto', fotoProduto='$fotoProduto', marcaProduto='$marcaProduto', idCategoria='$categoriaProduto', precoProduto='$precoProduto', precoPromocao='$precoPromocao', pesoProduto='$pesoProduto', unidadePeso='$unidadePeso', localizacaoProduto='$localizacaoProduto', avaliacaoProduto='$avaliacaoProduto', descricaoProduto='$descricaoProduto', destaqueProduto= '$destaqueProduto' WHERE idProduto = '$idProduto'";
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    if (mysqli_affected_rows($conn)) {
+      header('Location: listaProdutos.php?Alteracao realizada com sucesso');
     }
     else{
       echo '
         <script>
-          window.alert("Formato de imagem não suportado, escolha entre .jpg, .jpeg, .png, ou .gif")
+          window.alert("Erro ao salvar, tente novamente!")
         </script>
       ';
     }
   }
-
-
-
-  $query = "UPDATE produtos SET codigoProduto='$codigoProduto', nomeProduto='$nomeProduto', fotoProduto='$fotoProduto', marcaProduto='$marcaProduto', idCategoria='$categoriaProduto', precoProduto='$precoProduto', precoPromocao='$precoPromocao', pesoProduto='$pesoProduto', unidadePeso='$unidadePeso', localizacaoProduto='$localizacaoProduto', avaliacaoProduto='$avaliacaoProduto', descricaoProduto='$descricaoProduto', destaqueProduto= '$destaqueProduto' WHERE idProduto = '$idProduto'";
-  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-  if (mysqli_affected_rows($conn)) {
-    header('Location: listaProdutos.php?Alteracao realizada com sucesso');
-  }
   else{
     echo '
       <script>
-        window.alert("Erro ao salvar, tente novamente!")
+        window.location.href = "inserirProduto.php"
+        window.alert("Código de barras já cadastrado")
       </script>
     ';
   }
