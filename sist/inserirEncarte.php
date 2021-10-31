@@ -90,14 +90,6 @@ if (isset($_GET['idEncarte'])) {
 
   }
 }
-if (isset($_POST['proximo'])) {
-  $qtdProdutos = $_POST['qtdProdutos'];
-  echo '
-    <script>
-      window.location.href = "inserirEncarte.php?Pagina2";
-    </script>
-  ';
-}
 
 if(isset($_POST['cadastrar'])){
 
@@ -169,6 +161,7 @@ if(isset($_POST['cadastrar'])){
         }
         else{
 
+          $qtdProdutos = "<script>document.write(valorInputQtd)</script>";
           echo $qtdProdutos;
         }
       ?>
@@ -177,9 +170,16 @@ if(isset($_POST['cadastrar'])){
       <br><br><br><br>
       <?php
         if (isset($_GET['pagina2'])) {  echo '<input type="submit" class="btnSalvar" name="cadastrar" value="Salvar">'; }
-        else { echo '<input type="submit" class="btnSalvar" name="proximo" value="Próximo">';}
+        else { echo '<input class="btnSalvar" onclick="proximoCampo()" id="proximo" value="Próximo">';}
       ?>
+      <script>
+      function proximoCampo(){
+        var valorInputQtd = document.getElementById('qtdProdutos').value;
+        console.log(valorInputQtd.value);
+        window.location.href = "inserirEncarte.php?Pagina2";
+      }
 
+      </script>
     </form>
   </div>
 </div>
