@@ -6,76 +6,6 @@ include('includes/header.php');
   tinymce.init({
     selector: '.tinymce',
   });
-  function mascaraData(val) {
-  var pass = val.value;
-  var expr = /[0123456789]/;
-
-  for (i = 0; i < pass.length; i++) {
-    // charAt -> retorna o caractere posicionado no índice especificado
-    var lchar = val.value.charAt(i);
-    var nchar = val.value.charAt(i + 1);
-
-    if (i == 0) {
-      // search -> retorna um valor inteiro, indicando a posição do inicio da primeira
-      // ocorrência de expReg dentro de instStr. Se nenhuma ocorrencia for encontrada o método retornara -1
-      // instStr.search(expReg);
-      if ((lchar.search(expr) != 0) || (lchar > 3)) {
-        val.value = "";
-      }
-
-    } else if (i == 1) {
-
-      if (lchar.search(expr) != 0) {
-        // substring(indice1,indice2)
-        // indice1, indice2 -> será usado para delimitar a string
-        var tst1 = val.value.substring(0, (i));
-        val.value = tst1;
-        continue;
-      }
-
-      if ((nchar != '/') && (nchar != '')) {
-        var tst1 = val.value.substring(0, (i) + 1);
-
-        if (nchar.search(expr) != 0)
-          var tst2 = val.value.substring(i + 2, pass.length);
-        else
-          var tst2 = val.value.substring(i + 1, pass.length);
-
-        val.value = tst1 + '/' + tst2;
-      }
-
-    } else if (i == 4) {
-
-      if (lchar.search(expr) != 0) {
-        var tst1 = val.value.substring(0, (i));
-        val.value = tst1;
-        continue;
-      }
-
-      if ((nchar != '/') && (nchar != '')) {
-        var tst1 = val.value.substring(0, (i) + 1);
-
-        if (nchar.search(expr) != 0)
-          var tst2 = val.value.substring(i + 2, pass.length);
-        else
-          var tst2 = val.value.substring(i + 1, pass.length);
-
-        val.value = tst1 + '/' + tst2;
-      }
-    }
-
-    if (i >= 6) {
-      if (lchar.search(expr) != 0) {
-        var tst1 = val.value.substring(0, (i));
-        val.value = tst1;
-      }
-    }
-  }
-
-  if (pass.length > 10)
-    val.value = val.value.substring(0, 10);
-  return true;
-}
 </script>
 
 <?php
@@ -93,14 +23,28 @@ if (isset($_GET['idEncarte'])) {
 
 if(isset($_POST['cadastrar'])){
 
-  $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
   $dataExpiracao = htmlspecialchars($_POST['dataExpiracao'], ENT_QUOTES, 'utf-8');
+  $qtdProdutos = htmlspecialchars($_POST['qtdProdutos'], ENT_QUOTES, 'utf-8');
+  $codigosProduto = '';
+  for ($i=1; $i <= $qtdProdutos ; $i++) {
+    $codigosProduto .= htmlspecialchars($_POST['produto'.$i], ENT_QUOTES, 'utf-8').';';
+  }
+  // $codigosProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
 
 
-  $query = "INSERT INTO projetos (titulo, texto, foto, link, removido) VALUES ('$titulo', '$texto', '$foto', '$link', '')";
+  $query = "INSERT INTO encarte (qtdProdutos, codigosProdutos, dataExpiracao) VALUES ('$qtdProdutos', '$codigosProduto', '$dataExpiracao')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
-    header('Location: listaProjetos.php?Operacao realizada com sucesso');
+    $produtoExplodido = explode(';', $codigosProduto);
+    for ($x=0; $x < count($produtoExplodido)-1 ; $x++) {
+      $query = "UPDATE produtos SET destaqueProduto='sim' WHERE codigoProduto = '$produtoExplodido[$x]'";
+      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        if (mysqli_affected_rows($conn)){
+          header('Location: listaEncarte.php?Operacao realizada com sucesso');
+        }
+    }
+
+
   }
   else{
     echo '
@@ -143,54 +87,58 @@ if(isset($_POST['cadastrar'])){
 
 
     <form class="boxInputs" method="post" enctype="multipart/form-data">
-      <?php
-        if (!isset($_GET['Pagina2'])) {
-      ?>
+
       <div class="row">
         <div class="col-md-6">
           <p class="tituloCampo">Quantidade de Produtos</p>
-          <input type="number" autocomplete="off" id="qtdProdutos" name="qtdProdutos">
+          <div class="row">
+            <div class="col-md-8">
+              <input type="number" autocomplete="off" id="qtdProdutos" name="qtdProdutos">
+            </div>
+            <div class="col-md-4">
+              <button type="button" onclick="adicionarCampo()" id="adicionar" name="button">Adicionar</button>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-6">
           <p class="tituloCampo">Data de Expiração</p>
-          <input type="text" maxlength="10" onkeypress="mascaraData(this)" autocomplete="off" placeholder="dd/mm/aaaa" name="link" value="<?php if(isset($_GET['idEncarte'])){echo $link;} ?>">
+          <input type="text" maxlength="10" onkeypress="mascaraData(this)" autocomplete="off" placeholder="dd/mm/aaaa" name="dataExpiracao" value="<?php if(isset($_GET['idEncarte'])){echo $link;} ?>">
         </div>
-      </div>
-      <?php
-        }
-        else{
 
-          $qtdProdutos = "<script>document.write(valorInputQtd)</script>";
-          echo $qtdProdutos;
+      </div>
+
+      <div id="camposAdicaoProdutos"> <!-- Campos adição produtos -->
+
+      </div>
+      <script>
+        function adicionarCampo(){
+          var valorInputQtd = document.getElementById('qtdProdutos').value;
+          let camposProdutos = "";
+          for (var i = 1; i <= valorInputQtd; i++) {
+            camposProdutos += '<p class="tituloCampo">Produto '+i+' </p><input type="text" autocomplete="off" name="produto'+i+'" value="">';
+          }
+          document.getElementById('camposAdicaoProdutos').innerHTML = camposProdutos;
         }
+      </script>
+      <?php
+        // $qtdProdutos = "<script>document.write(valorInputQtd)</script>";
+        // echo $qtdProdutos;
       ?>
 
 
       <br><br><br><br>
+      <input type="submit" class="btnSalvar" name="cadastrar" value="Salvar">
       <?php
-        if (isset($_GET['pagina2'])) {  echo '<input type="submit" class="btnSalvar" name="cadastrar" value="Salvar">'; }
-        else { echo '<input class="btnSalvar" onclick="proximoCampo()" id="proximo" value="Próximo">';}
+        // if (isset($_GET['pagina2'])) {  echo '<input type="submit" class="btnSalvar" name="cadastrar" value="Salvar">'; }
+        // else { echo '<input class="btnSalvar" onclick="proximoCampo()" id="proximo" value="Próximo">';}
       ?>
-      <script>
-      function proximoCampo(){
-        var valorInputQtd = document.getElementById('qtdProdutos').value;
-        console.log(valorInputQtd.value);
-        window.location.href = "inserirEncarte.php?Pagina2";
-      }
 
-      </script>
     </form>
   </div>
 </div>
 
-<script>
-  function excluirItem(){
-    if (window.confirm("Deseja mesmo excluir este item?")) {
-      window.location.href = "inserirProjeto.php?itemRemovido=<?php echo $idEncarte; ?>"
-    }
-  }
-
+<script src="js/mascarasInput.js" >
 </script>
 
 <?php
