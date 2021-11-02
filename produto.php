@@ -12,11 +12,19 @@
       $query = "INSERT INTO cesta_cliente_$idCliente (codigoProduto) VALUES ('$codigoProdutoParaAdicionar')";
       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
       if ($result) {
-        echo '
-          <script>
-            window.location.href = "mercado.php";
-          </script>
-        ';
+        if (isset($_GET['encarte'])) {
+          echo '
+            <script>
+              window.location.href = "encarte.php";
+            </script>
+          ';
+        } else{
+            echo '
+              <script>
+                window.location.href = "mercado.php";
+              </script>
+            ';
+          }
       }
     }
     else {

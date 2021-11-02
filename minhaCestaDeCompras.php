@@ -5,14 +5,20 @@
 
   $idCliente = $_SESSION['idCliente'] ;
 
-  if (isset($_POST['excluirItemCesta'])) {
-    echo '
-      <script>
-          window.location.href = "index.php";
-      </script>
-    ';
+// removendo da lista de compras
+  if (isset($_GET['itemRemovido'])) {
+    $codigoProdutoRemovido = $_GET['itemRemovido'];
+    $query = "DELETE FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProdutoRemovido'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_affected_rows($conn)) {
+      echo '
+          window.location.href = "minhaCestaDeCompras.php?Item removido com sucesso"
+      ';
+    }
   }
 
+
+// criando cesta de compras
   if (isset($_POST['criarCesta'])) {
     $criaTabela = "CREATE TABLE cesta_cliente_$idCliente(
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -37,6 +43,8 @@
       ';
      }
   }
+// fim criação da cestaDeCompra
+
 
   $query = "SELECT cestaDeCompra FROM clientes WHERE idCliente = '$idCliente'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -125,9 +133,9 @@
                   <h3 class="nomeProdutoCesta">'.$nomeProduto.' - '.$marcaProduto.'</h3>
                   <h3 class="locProdutoCesta">localização: '.$localizacaoProduto.'</h3>
                   <form class="opcoesItemCesta" method="post">
-                    <button name="excluirItemCesta">
+                    <a href="minhaCestaDeCompras.php?itemRemovido='.$codigoProduto.'" name="excluirItemCesta">
                       <i class="fas fa-trash"></i>
-                    </button>
+                    </a>
                   </form>
                 </div>
 
@@ -146,7 +154,6 @@
   //   <span>R$</span> '.$totalCesta.'
   // </div>
 ?>
-
 
 <?php
   include('includes/footer.php');
