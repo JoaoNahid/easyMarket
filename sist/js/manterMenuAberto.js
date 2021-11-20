@@ -26,7 +26,3 @@ if(localStorage.getItem("menuAberto")){
       $('div#'+menuAbertoAtual+' ul div.setaVetorTop').toggleClass('setaVetorBottom');
   }
 }
-
-$('.telefone').mask('(00) 0 0000-0000');
-$('.dinheiro').mask('#.##0,00', {reverse: true});
-$('.estado').mask('AA');

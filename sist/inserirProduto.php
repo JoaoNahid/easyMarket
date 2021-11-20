@@ -42,8 +42,14 @@ if(isset($_POST['cadastrar'])){
     $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
     $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
     $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
+
     $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
+    $precoProduto = str_replace(',', '.', $precoProduto);
+
     $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
+    $precoPromocao = str_replace(',', '.', $precoPromocao);
+
+
     $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
     $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
     $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
@@ -113,8 +119,13 @@ if(isset($_POST['salvar'])){
     $fotoProduto = htmlspecialchars($_POST['fotoProduto'], ENT_QUOTES, 'utf-8');
     $marcaProduto = htmlspecialchars($_POST['marcaProduto'], ENT_QUOTES, 'utf-8');
     $categoriaProduto = htmlspecialchars($_POST['idCategoria'], ENT_QUOTES, 'utf-8');
+
     $precoProduto = htmlspecialchars($_POST['precoProduto'], ENT_QUOTES, 'utf-8');
+    $precoProduto = str_replace(',', '.', $precoProduto);
+
     $precoPromocao = htmlspecialchars($_POST['precoPromocao'], ENT_QUOTES, 'utf-8');
+    $precoPromocao = str_replace(',', '.', $precoPromocao);
+
     $pesoProduto = htmlspecialchars($_POST['pesoProduto'], ENT_QUOTES, 'utf-8');
     $unidadePeso = htmlspecialchars($_POST['unidadePeso'], ENT_QUOTES, 'utf-8');
     $localizacaoProduto = htmlspecialchars($_POST['localizacaoProduto'], ENT_QUOTES, 'utf-8');
@@ -231,10 +242,10 @@ if(isset($_POST['salvar'])){
       <input type="text" autocomplete="off" name="marcaProduto" value="<?php if(isset($_GET['idProduto'])){echo $marcaProduto;} ?>">
 
       <p class="tituloCampo">Preço do Produto</p>
-      <input type="text" autocomplete="off" step=",01" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
+      <input type="text" autocomplete="off" data-js="preco" name="precoProduto" value="<?php if(isset($_GET['idProduto'])){echo $precoProduto;} ?>">
 
       <p class="tituloCampo">Preço em Promoção</p>
-      <input type="text" autocomplete="off" step=",01" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
+      <input type="text" autocomplete="off" data-js="preco" name="precoPromocao" value="<?php if(isset($_GET['idProduto'])){echo $precoPromocao;} ?>">
 
       <div class="row">
         <div class="col-md-8">
@@ -281,7 +292,7 @@ if(isset($_POST['salvar'])){
     }
   }
 </script>
-
+<script src="js/mascarasInput.js"></script>
 <?php
   include('includes/footer.php');
 ?>

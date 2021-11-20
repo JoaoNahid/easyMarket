@@ -43,6 +43,9 @@
  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
  <script src="js/flickity-docs.min.js"></script>
 
+ <!-- mascara inputs -->
+ <script src="js/mascarasInput.js"></script>
+
  <script src="js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

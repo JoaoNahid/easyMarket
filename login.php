@@ -58,7 +58,7 @@
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <input class="form-control" required placeholder="Telefone" type="text" name="telefoneCliente">
+                        <input class="form-control" required data-js="telefone" placeholder="Telefone" type="text" name="telefoneCliente">
                       </div>
 
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">

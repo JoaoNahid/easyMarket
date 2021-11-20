@@ -103,7 +103,7 @@ if(isset($_POST['cadastrar'])){
 
         <div class="col-md-6">
           <p class="tituloCampo">Data de Expiração</p>
-          <input type="text" maxlength="10" onkeypress="mascaraData(this)" autocomplete="off" placeholder="dd/mm/aaaa" name="dataExpiracao" value="<?php if(isset($_GET['idEncarte'])){echo $link;} ?>">
+          <input type="text" data-js="data" autocomplete="off" placeholder="dd/mm/aaaa" name="dataExpiracao" value="<?php if(isset($_GET['idEncarte'])){echo $link;} ?>">
         </div>
 
       </div>
