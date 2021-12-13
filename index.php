@@ -1,5 +1,6 @@
 <?php
   include('includes/header.php');
+  include('arquivosDeSessao/conexaoBancoInterno.php');
 ?>
 <!-- start slider section -->
 <div class="slider_section">
@@ -9,6 +10,41 @@
             <div class="full">
                <div id="main_slider" class="carousel vert slide" data-ride="carousel" data-interval="5000">
                   <div class="carousel-inner">
+                    <?php
+                      // $x = 0;
+                      // $query = "SELECT * FROM produtos WHERE destaqueProduto != 'sim' ORDER BY rand() LIMIT 3 ";
+                      // $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
+                      // while($row = mysqli_fetch_assoc($result)) {
+                      //   $nomeProduto = $row['nomeProduto'];
+                      //   $marcaProduto = $row['marcaProduto'];
+                      //   $idProduto = $row['idProduto'];
+                      //   $precoProduto = $row['precoProduto'];
+                      //   $fotoBanco = $row['fotoProduto'];
+                      //   $pesoProduto = $row['pesoProduto'];
+                      //   $unidadePeso = $row['unidadePeso'];
+                      //
+                      //
+                      //   echo '
+                      //   <div class="carousel-item">
+                      //      <div class="row">
+                      //         <div class="col-md-5">
+                      //            <div class="slider_cont">
+                      //               <h3>'.$nomeProduto.' '.$pesoProduto.' '.$unidadePeso.'</h3>
+                      //               <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                      //               <a class="main_bt_border" href="#">Order Now</a>
+                      //            </div>
+                      //         </div>
+                      //         <div class="col-md-7">
+                      //            <div class="slider_image full text_align_center">
+                      //               <img class="img-responsive" src="sist/uploads/'.$fotoBanco.'" alt="#" />
+                      //            </div>
+                      //         </div>
+                      //      </div>
+                      //   </div>
+                      //   ';
+                      //   $x++;
+                      // }
+                    ?>
                      <div class="carousel-item active">
                         <div class="row">
                            <div class="col-md-5">
@@ -68,7 +104,34 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="carousel" data-flickity='{ "autoPlay": true, "wrapAround": true }'>
-                     <div class="carousel-cell">
+                    <?php
+                    $query = "SELECT * FROM produtos WHERE destaqueProduto='sim' ORDER BY rand() LIMIT 6 ";
+                      $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
+                      while($row = mysqli_fetch_assoc($result)) {
+                        $nomeProdutoDestaque = $row['nomeProduto'];
+                        $marcaProdutoDestaque = $row['marcaProduto'];
+                        $idProdutoDestaque = $row['idProduto'];
+                        $precoProdutoDestaque = $row['precoPromocao'];
+                        $fotoBancoDestaque = $row['fotoProduto'];
+                        $pesoProdutoDestaque = $row['pesoProduto'];
+                        $unidadePesoDestaque = $row['unidadePeso'];
+
+                        echo '
+                        <div class="carousel-cell">
+                           <div class="item">
+                              <div class="product_blog_img boxImgDestaque">
+                                 <img src="sist/uploads/'.$fotoBancoDestaque.'" alt="#" />
+                              </div>
+                              <div class="product_blog_cont">
+                                 <h3>'.$nomeProdutoDestaque.' '.$pesoProdutoDestaque.' '.$unidadePesoDestaque.'</h3>
+                                 <h4><span class="theme_color">$</span>'.$precoProdutoDestaque.'</h4>
+                              </div>
+                           </div>
+                        </div>
+                        ';
+                      }
+                    ?>
+                      <!-- <div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
                               <img src="images/rs1.png" alt="#" />
@@ -94,7 +157,7 @@
 
                      <div class="carousel-cell">
                         <div class="item">
-                           <div class="product_blog_img">
+                           <div class="product_blog_img boxImgDestaque">
                               <img src="images/rs2.png" alt="#" />
                            </div>
                            <div class="product_blog_cont">
@@ -102,9 +165,9 @@
                               <h4><span class="theme_color">$</span>20</h4>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
 
-                     <div class="carousel-cell">
+                     <!--<div class="carousel-cell">
                         <div class="item">
                            <div class="product_blog_img">
                               <img src="images/rs2.png" alt="#" />
@@ -138,7 +201,7 @@
                               <h4><span class="theme_color">$</span>20</h4>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
 
                   </div>
                </div>
@@ -180,56 +243,7 @@
       </div>
    </div>
    <!-- end about -->
-   <!-- blog -->
-   <div class="blog">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="title">
-                  <i><img src="images/title.png" alt="#"/></i>
-                  <h2>Nosso blog</h2>
-                  <span>ao olhar para seu layout. O objetivo de usar Lorem</span>
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
-               <div class="blog_box">
-                  <div class="blog_img_box">
-                     <figure><img src="images/blog_img1.png" alt="#"/>
-                        <span>02 FEB 2019</span>
-                     </figure>
-                  </div>
-                  <h3>Spicy Barger</h3>
-                  <p>O pedaço padrão de Lorem Ipsum usado desde 1500 é reproduzido abaixo para os interessados. As seções 1.10.32 e 1.10.33 de "de Finibus Bonorum et Malorum" por Cícero também são reproduzidas em sua forma original exata, acompanhadas por versões em inglês do </p>
-               </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mar_bottom">
-               <div class="blog_box">
-                  <div class="blog_img_box">
-                     <figure><img src="images/blog_img2.png" alt="#"/>
-                        <span>02 FEB 2019</span>
-                     </figure>
-                  </div>
-                  <h3>Egg & Tosh</h3>
-                  <p>O pedaço padrão de Lorem Ipsum usado desde 1500 é reproduzido abaixo para os interessados. As seções 1.10.32 e 1.10.33 de "de Finibus Bonorum et Malorum" por Cícero também são reproduzidas em sua forma original exata, acompanhadas por versões em inglês do </p>
-               </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-               <div class="blog_box">
-                  <div class="blog_img_box">
-                     <figure><img src="images/blog_img3.png" alt="#"/>
-                        <span>02 FEB 2019</span>
-                     </figure>
-                  </div>
-                  <h3>Pizza</h3>
-                  <p>O pedaço padrão de Lorem Ipsum usado desde 1500 é reproduzido abaixo para os interessados. As seções 1.10.32 e 1.10.33 de "de Finibus Bonorum et Malorum" por Cícero também são reproduzidas em sua forma original exata, acompanhadas por versões em inglês do </p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- end blog -->
+  
    <!-- Our Client -->
    <div class="Client">
       <div class="container">

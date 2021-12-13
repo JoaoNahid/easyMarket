@@ -1049,3 +1049,10 @@
   font-size: 25px;
   text-align: center;
 }
+.boxImgDestaque{
+  height: 197px !important;
+}
+.boxImgDestaque img{
+  height: 100%;
+  width: auto;
+}
