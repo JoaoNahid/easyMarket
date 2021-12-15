@@ -112,7 +112,7 @@ if(isset($_POST['cadastrar'])){
 if(isset($_POST['salvar'])){
 
   $codigoProduto = htmlspecialchars($_POST['codigoProduto'], ENT_QUOTES, 'utf-8');
-  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
+  $query = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto' AND idProduto != '$idProduto'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if(mysqli_num_rows($result) == 0){
     $nomeProduto = htmlspecialchars($_POST['nomeProduto'], ENT_QUOTES, 'utf-8');
