@@ -250,7 +250,7 @@ if(isset($_POST['salvar'])){
       <div class="row">
         <div class="col-md-8">
           <p class="tituloCampo">Peso do Produto</p>
-          <input type="number" autocomplete="off" step=",01" name="pesoProduto" value="<?php if(isset($_GET['idProduto'])){echo $pesoProduto;} ?>">
+          <input type="text" autocomplete="off" data-js="preco" name="pesoProduto" value="<?php if(isset($_GET['idProduto'])){echo $pesoProduto;} ?>">
         </div>
         <div class="col-md-4">
           <p class="tituloCampo">Unidade de Peso</p>
