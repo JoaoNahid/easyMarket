@@ -96,12 +96,15 @@
                 $codigoProduto = $row['codigoProduto'];
                 $destaqueProduto = $row['destaqueProduto'];
 
-                $query2 = "SELECT * FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProduto'";
-                $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
-                if(mysqli_num_rows($result2) > 0){
-                  $verificaSeTemNaCesta = '<a class="addCesta" "><i class="fas fa-check"></i></a>';
-                } else{
-                  $verificaSeTemNaCesta ='<a class="addCesta" href="produto.php?adicionarACesta='.$codigoProduto.'"><i class="fas fa-shopping-basket"></i></a>';
+                if (mysiql_select_db($conn, 'cesta_cliente_'.$idCliente)) {
+
+                  $query2 = "SELECT * FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProduto'";
+                  $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+                  if(mysqli_num_rows($result2) > 0){
+                    $verificaSeTemNaCesta = '<a class="addCesta" "><i class="fas fa-check"></i></a>';
+                  } else{
+                    $verificaSeTemNaCesta ='<a class="addCesta" href="produto.php?adicionarACesta='.$codigoProduto.'"><i class="fas fa-shopping-basket"></i></a>';
+                  }
                 }
 
 

@@ -10,7 +10,7 @@
     $paginaAtual = '1';
   }
 
-  $qtdPorPagina = '5'; // número de registros por página
+  $qtdPorPagina = '6'; // número de registros por página
   $inicio = $paginaAtual - 1;
   $inicio = $inicio * $qtdPorPagina;
   $limite = $inicio.','.$qtdPorPagina;
@@ -101,16 +101,21 @@
             ?>
           </div>
           <?php
-          $anterior = $paginaAtual -1;
-          $proximo = $paginaAtual +1;
-          if ($paginaAtual>1) {
-          echo " <a href='?pagina=$anterior'><i class='fas fa-angle-left'></i> Anterior</a> ";
-          }
+          $verificaCategoriaParaPaginacao = '';
+            if(isset($_GET['categoria'])){
+              $categoriaPaginacao = htmlspecialchars($_GET['categoria'], ENT_QUOTES, 'utf-8');
+              $verificaCategoriaParaPaginacao = 'categoria='.$categoriaPaginacao.'&';
+            }
+            $anterior = $paginaAtual -1;
+            $proximo = $paginaAtual +1;
+            if ($paginaAtual>1) {
+                echo ' <a href="?'.$verificaCategoriaParaPaginacao.'pagina='.$anterior.'"><i class="fas fa-angle-left"></i> Anterior</a> ';
+            }
 
-          echo "|";
-          if ($paginaAtual<$qtdPaginas) {
-          echo " <a href='?pagina=$proximo'>Próxima <i class='fas fa-angle-right'></i></a>";
-          }
+            echo "|";
+            if ($paginaAtual<$qtdPaginas) {
+          echo ' <a href="?'.$verificaCategoriaParaPaginacao.'pagina='.$proximo.'"><i class="fas fa-angle-right"></i> Próximo</a> ';
+            }
           ?>
         </div>
 
