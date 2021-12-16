@@ -1,36 +1,33 @@
 <?php
 include('includes/header.php');
 
-if (isset($_GET['idPergunta'])) {
-  $idPergunta = $_GET['idPergunta'];
-  $query = "SELECT * FROM duvidas WHERE idPergunta = '$idPergunta'";
+if (isset($_GET['idCategoria'])) {
+  $idCategoria = $_GET['idCategoria'];
+
+  $query = "SELECT * FROM categorias WHERE idCategoria = '$idCategoria'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   while($row = mysqli_fetch_assoc($result)) {
-    $pergunta = $row['pergunta'];
-    $resposta = $row['resposta'];
-
+    $nomeCategoria = $row['nomeCategoria'];
   }
 }
 
 if (isset($_GET['itemRemovido'])) {
   $idProdutoRemovido = $_GET['itemRemovido'];
-  $query = "UPDATE duvidas SET removido='sim' WHERE idPergunta = '$idProdutoRemovido'";
+  $query = "UPDATE categorias SET removido='sim' WHERE idCategoria = '$idProdutoRemovido'";
   $result = mysqli_query($conn, $query);
   if (mysqli_affected_rows($conn)) {
-    header('Location: listaDuvidas.php?Item removido com sucesso');
+    header('Location: listaCategoria.php?Item removido com sucesso');
   }
 }
 
 
 if(isset($_POST['cadastrar'])){
 
-  $pergunta = htmlspecialchars($_POST['pergunta'], ENT_QUOTES, 'utf-8');
-  $resposta = htmlspecialchars($_POST['resposta'], ENT_QUOTES, 'utf-8');
-
-  $query = "INSERT INTO duvidas (pergunta, resposta, removido) VALUES ('$pergunta', '$resposta', '')";
+  $nomeCategoria = htmlspecialchars($_POST['nomeCategoria'], ENT_QUOTES, 'utf-8');
+  $query = "INSERT INTO categorias (nomeCategoria, removido) VALUES ('$nomeCategoria', '')";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
-    header('Location: listaDuvidas.php?Operacao realizada com sucesso');
+    header('Location: listaCategoria.php?Operacao realizada com sucesso');
   }
   else{
     echo '
@@ -43,13 +40,12 @@ if(isset($_POST['cadastrar'])){
 
 }
 if(isset($_POST['salvar'])){
-  $pergunta = htmlspecialchars($_POST['pergunta'], ENT_QUOTES, 'utf-8');
-  $resposta = htmlspecialchars($_POST['resposta'], ENT_QUOTES, 'utf-8');
+  $nomeCategoria = htmlspecialchars($_POST['nomeCategoria'], ENT_QUOTES, 'utf-8');
 
-  $query = "UPDATE duvidas SET pergunta='$pergunta', resposta='$resposta' WHERE idPergunta = '$idPergunta'";
+  $query = "UPDATE categorias SET nomeCategoria='$nomeCategoria' WHERE idCategoria = '$idCategoria'";
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   if (mysqli_affected_rows($conn)) {
-    header('Location: listaDuvidas.php?Alteracao realizada com sucesso');
+    header('Location: listaCategoria.php?Alteracao realizada com sucesso');
   }
   else{
     echo '
@@ -71,12 +67,12 @@ if(isset($_POST['salvar'])){
 <div class="container">
   <div class="conteudoFormulario" method="post">
     <div class="cabecalhoForm">
-      <h3 class="colunasTop"><?php if(isset($_GET['idPergunta'])){echo 'Editar Pergunta';}else{ echo 'Adicionar Pergunta';} ?></h3>
+      <h3 class="colunasTop"><?php if(isset($_GET['idCategoria'])){echo 'Editar Categoria';}else{ echo 'Adicionar Categoria';} ?></h3>
 
       <div class="btnsTop floatRight colunasTop">
         <?php
-          if (isset($_GET['idPergunta'])) {
-            $idPergunta = $_GET['idPergunta'];
+          if (isset($_GET['idCategoria'])) {
+            $idCategoria = $_GET['idCategoria'];
             echo '
             <div class="btnAdicionar btnRemover colunasTop">
               <div onclick="excluirItem()"><span class="">Remover</span> <i class="fas fa-trash"></i></div>
@@ -89,15 +85,11 @@ if(isset($_POST['salvar'])){
 
 
     <form class="boxInputs" method="post">
-      <p class="tituloCampo">Pergunta</p>
-      <input type="text" autocomplete="off" name="pergunta" value="<?php if(isset($_GET['idPergunta'])){echo $pergunta;} ?>">
-
-      <p class="tituloCampo">Resposta</p>
-      <input type="text" autocomplete="off" name="resposta" value="<?php if(isset($_GET['idPergunta'])){echo $resposta;} ?>">
-
+      <p class="tituloCampo">Categoria</p>
+      <input type="text" autocomplete="off" name="nomeCategoria" value="<?php if(isset($_GET['idCategoria'])){echo $nomeCategoria;} ?>">
 
       <br><br><br><br>
-      <input type="submit" class="btnSalvar" name="<?php if(isset($_GET['idPergunta'])){echo 'salvar';}else{echo 'cadastrar';} ?>" value="Salvar">
+      <input type="submit" class="btnSalvar" name="<?php if(isset($_GET['idCategoria'])){echo 'salvar';}else{echo 'cadastrar';} ?>" value="Salvar">
 
     </form>
   </div>
@@ -106,7 +98,7 @@ if(isset($_POST['salvar'])){
 <script>
   function excluirItem(){
     if (window.confirm("Deseja mesmo excluir este item?")) {
-      window.location.href = "inserirDuvida.php?itemRemovido=<?php echo $idPergunta; ?>"
+      window.location.href = "inserirCategoria.php?itemRemovido=<?php echo $idCategoria; ?>"
     }
   }
 </script>
