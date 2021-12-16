@@ -1056,3 +1056,31 @@
   height: 100%;
   width: auto;
 }
+.bannerSection{
+  width: 100%;
+  height: auto;
+  /* background: url(../images/bannerIndex.jpg) no-repeat center center;
+  background-size: cover; */
+  padding-top: 93px;
+  background-color: #000;
+}
+.bannerSection img{
+  width: 100%;
+  height: auto;
+}
+@media(max-width: 576px){
+  .bannerSection{
+    padding-top: 158px;
+  }
+}
+.tituloAtuacao h3{
+  color: #000;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+.iconAtuacao{
+  max-width: 100px;
+}
+.containerSobre{
+  margin-bottom: 35px;
+}

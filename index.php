@@ -3,95 +3,18 @@
   include('arquivosDeSessao/conexaoBancoInterno.php');
 ?>
 <!-- start slider section -->
-<div class="slider_section">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="full">
-               <div id="main_slider" class="carousel vert slide" data-ride="carousel" data-interval="5000">
-                  <div class="carousel-inner">
-                    <?php
-                      // $x = 0;
-                      // $query = "SELECT * FROM produtos WHERE destaqueProduto != 'sim' ORDER BY rand() LIMIT 3 ";
-                      // $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
-                      // while($row = mysqli_fetch_assoc($result)) {
-                      //   $nomeProduto = $row['nomeProduto'];
-                      //   $marcaProduto = $row['marcaProduto'];
-                      //   $idProduto = $row['idProduto'];
-                      //   $precoProduto = $row['precoProduto'];
-                      //   $fotoBanco = $row['fotoProduto'];
-                      //   $pesoProduto = $row['pesoProduto'];
-                      //   $unidadePeso = $row['unidadePeso'];
-                      //
-                      //
-                      //   echo '
-                      //   <div class="carousel-item">
-                      //      <div class="row">
-                      //         <div class="col-md-5">
-                      //            <div class="slider_cont">
-                      //               <h3>'.$nomeProduto.' '.$pesoProduto.' '.$unidadePeso.'</h3>
-                      //               <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                      //               <a class="main_bt_border" href="#">Order Now</a>
-                      //            </div>
-                      //         </div>
-                      //         <div class="col-md-7">
-                      //            <div class="slider_image full text_align_center">
-                      //               <img class="img-responsive" src="sist/uploads/'.$fotoBanco.'" alt="#" />
-                      //            </div>
-                      //         </div>
-                      //      </div>
-                      //   </div>
-                      //   ';
-                      //   $x++;
-                      // }
-                    ?>
-                     <div class="carousel-item active">
-                        <div class="row">
-                           <div class="col-md-5">
-                              <div class="slider_cont">
-                                 <h3>Discover Restaurants<br>That deliver near You</h3>
-                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                 <a class="main_bt_border" href="#">Order Now</a>
-                              </div>
-                           </div>
-                           <div class="col-md-7">
-                              <div class="slider_image full text_align_center">
-                                 <img class="img-responsive" src="images/burger_slide.png" alt="#" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-md-5">
-                              <div class="slider_cont">
-                                 <h3>Discover Restaurants<br>That deliver near You</h3>
-                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                 <a class="main_bt_border" href="#">Order Now</a>
-                              </div>
-                           </div>
-                           <div class="col-md-7 full text_align_center">
-                              <div class="slider_image">
-                                 <img class="img-responsive" src="images/burger_slide.png" alt="#" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-up"></i>
-                  </a>
-                  <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-down"></i>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+<div class="bannerSection">
+  <img src="images/bannerHome2.png" alt="">
 </div>
 <!-- end slider section -->
-<!-- section -->
+
+<!-- ofertas section -->
+<?php
+  $query = "SELECT * FROM encarte";
+  $result = mysqli_query($connBDInterno, $query) or die(mysqli_error($connBDInterno));
+  if (mysqli_num_rows($result) > 0) {
+?>
+
 <section class="resip_section">
    <div class="containerSlider">
       <div class="row">
@@ -131,77 +54,6 @@
                         ';
                       }
                     ?>
-                      <!-- <div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img">
-                              <img src="images/rs1.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Caseira</h3>
-                              <h4><span class="theme_color">$</span>10</h4>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img">
-                              <img src="images/rs2.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Macarrão</h3>
-                              <h4><span class="theme_color">$</span>20</h4>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img boxImgDestaque">
-                              <img src="images/rs2.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Macarrão</h3>
-                              <h4><span class="theme_color">$</span>20</h4>
-                           </div>
-                        </div>
-                     </div> -->
-
-                     <!--<div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img">
-                              <img src="images/rs2.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Macarrão</h3>
-                              <h4><span class="theme_color">$</span>20</h4>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img">
-                              <img src="images/rs2.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Macarrão</h3>
-                              <h4><span class="theme_color">$</span>20</h4>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="carousel-cell">
-                        <div class="item">
-                           <div class="product_blog_img">
-                              <img src="images/rs2.png" alt="#" />
-                           </div>
-                           <div class="product_blog_cont">
-                              <h3>Macarrão</h3>
-                              <h4><span class="theme_color">$</span>20</h4>
-                           </div>
-                        </div>
-                     </div> -->
 
                   </div>
                </div>
@@ -210,6 +62,10 @@
       </div>
    </div>
 </section>
+<?php
+  }
+?>
+<!-- end oferta section -->
 
 <div class="bg_bg">
    <!-- about -->
@@ -243,7 +99,7 @@
       </div>
    </div>
    <!-- end about -->
-  
+
    <!-- Our Client -->
    <div class="Client">
       <div class="container">
