@@ -1,6 +1,5 @@
 <?php
   include('includes/header.php');
-  include('arquivosDeSessao/conexao.php');
   include('arquivosDeSessao/verificaLogin.php');
   include('arquivosDeSessao/conexaoBancoInterno.php');
 
@@ -78,8 +77,9 @@
 
 <!-- após criado a cesta -->
 <?php
-  echo $verificaExistenciaDb = mysqli_select_db ($conn, 'cesta_cliente_'.$idCliente) or die(mysqli_error($conn));
-  if ($verificaExistenciaDb) {
+  include('arquivosDeSessao/conexao.php');
+  $verificaExistenciaDb = mysqli_query($conn, "SHOW TABLES LIKE 'cesta_cliente_$idCliente'") or die(mysqli_error($conn));
+  if ($verificaExistenciaDb ->num_rows > 0) {
     echo 'EXISTEEEEEE';
     $query = "SELECT codigoProduto FROM cesta_cliente_$idCliente";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
