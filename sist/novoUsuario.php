@@ -47,19 +47,8 @@
       <input type="text" autocomplete="off" name="nome" value="<?php if(isset($nome)){ echo $nome;} ?>">
 
       <p class="tituloCampo">cpf</p>
-      <input type="text" oninput="mascara(this)" autocomplete="off" name="cpf" value="<?php if(isset($cpf)){ echo $cpf;} ?>">
-      <script type="text/javascript">
-      function mascara(i){
-         var v = i.value;
-         if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-            i.value = v.substring(0, v.length-1);
-            return;
-         }
-         i.setAttribute("maxlength", "14");
-         if (v.length == 3 || v.length == 7) i.value += ".";
-         if (v.length == 11) i.value += "-";
-        }
-      </script>
+      <input type="text" data-js="cpf" autocomplete="off" name="cpf" value="<?php if(isset($cpf)){ echo $cpf;} ?>">
+
 
       <p class="tituloCampo">Email</p>
       <input type="text" autocomplete="off" name="email" value="<?php if(isset($email)){ echo $email;}; ?>">

@@ -80,7 +80,6 @@
   include('arquivosDeSessao/conexao.php');
   $verificaExistenciaDb = mysqli_query($conn, "SHOW TABLES LIKE 'cesta_cliente_$idCliente'") or die(mysqli_error($conn));
   if ($verificaExistenciaDb ->num_rows > 0) {
-    echo 'EXISTEEEEEE';
     $query = "SELECT codigoProduto FROM cesta_cliente_$idCliente";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     if (mysqli_num_rows($result) == 0) {
@@ -118,25 +117,29 @@
           <div class="container">
             <div class="boxCestaCompras">
       ';
+      $totalPreco = 0;
       while($row = mysqli_fetch_assoc($result)) {
         $codigoProduto = $row['codigoProduto'];
-        // $totalCesta = 0;
         $query2 = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
         $result2 = mysqli_query($connBDInterno, $query2) or die(mysqli_error($connBDInterno));
         while($row2 = mysqli_fetch_assoc($result2)) {
           $nomeProduto = $row2['nomeProduto'];
           $marcaProduto = $row2['marcaProduto'];
           $idProduto = $row2['idProduto'];
-          $precoProduto = $row2['precoProduto'];
+          $destaqueProduto = $row2['destaqueProduto'];
+          if ($destaqueProduto == 'sim') {
+            $precoProduto = $row2['precoPromocao'];
+          } else{
+            $precoProduto = $row2['precoProduto'];
+          }
           $localizacaoProduto = $row2['localizacaoProduto'];
           $fotoProduto = $row2['fotoProduto'];
-          $codigoProduto = $row2['codigoProduto'];
 
-          // $totalCesta += $precoProduto;
+
           echo '
                   <div class="itemCesta">
                     <div class="imagemProdutoCesta" style="background: url(sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover"></div>
-                    <h3 class="nomeProdutoCesta">'.$nomeProduto.' - '.$marcaProduto.'</h3>
+                    <h3 class="nomeProdutoCesta">'.$nomeProduto.' '.$marcaProduto.'</h3>
                     <h3 class="locProdutoCesta">localização: '.$localizacaoProduto.'</h3>
                     <form class="opcoesItemCesta" method="post">
                       <a href="minhaCestaDeCompras.php?itemRemovido='.$codigoProduto.'" name="excluirItemCesta">
@@ -147,6 +150,7 @@
 
           ';
 
+          $totalPreco = $totalPreco + $precoProduto;
         }
       }
       echo '
@@ -157,9 +161,13 @@
       ';
     }
   }
-  // <div class="totalCesta">
-  //   <span>R$</span> '.$totalCesta.'
-  // </div>
+  $totalPreco = str_replace('.', ',', $totalPreco);
+  $totalPreco = number_format($totalPreco, 2, ',', '');
+  echo '
+    <div class="container">
+      <div class="totalCesta">Total: <span>R$</span> '.$totalPreco.'</div>
+    </div>
+  ';
 ?>
 
 <?php

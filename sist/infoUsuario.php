@@ -42,14 +42,11 @@
 
 
     <form class="boxInputs" method="post" enctype="multipart/form-data">
-      <p class="tituloCampo">Nome</p>
+      <p class="tituloCampo">Nome (login de acesso)</p>
       <input type="text" autocomplete="off" name="nome" value="<?php echo $nomeUsuario; ?>">
 
       <p class="tituloCampo">Email</p>
       <input type="text" autocomplete="off" name="email" value="<?php echo $emailUsuario; ?>">
-
-      <p class="tituloCampo">Login</p>
-      <input type="text" autocomplete="off" name="login" value="<?php echo $loginUsuario; ?>">
 
       <p class="tituloCampo">Senha</p>
       <input type="password" autocomplete="off" placeholder="nova senha" name="senha">

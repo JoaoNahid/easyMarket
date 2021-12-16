@@ -26,7 +26,7 @@
                       <div class="row">
 
                           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <input autocomplete="off" class="form-control" placeholder="Login" type="text" name="login">
+                            <input autocomplete="off" class="form-control" placeholder="Email" type="text" name="login">
                           </div>
 
                           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">

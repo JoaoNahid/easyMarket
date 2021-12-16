@@ -92,8 +92,8 @@ include('includes/header.php');
 
                     echo '
                       <div class="col-md-4">
-                        <input type="checkbox" name="selecaoEncarte" value="'.$codigoProduto.'" id="produto'.$idProduto.'">
-                        <label for="produto'.$idProduto.'" class="itemLista">
+
+                        <label class="itemLista">
                           <a ><div class="imgProduto" style="background: url(../sist/uploads/'.$fotoProduto.') no-repeat center; background-size: cover;"></div></a>
                           <div class="descProduto">
                             <a><h3>'.$nomeProduto.' '.$marcaProduto.'</h3></a>

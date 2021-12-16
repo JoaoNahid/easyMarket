@@ -1084,3 +1084,9 @@
 .containerSobre{
   margin-bottom: 35px;
 }
+.totalCesta{
+  color: #000 !important;
+  margin-top: 30px;
+  font-size: 50px;
+  text-align: right;
+}
