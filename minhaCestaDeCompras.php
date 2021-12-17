@@ -1,5 +1,6 @@
 <?php
   include('includes/header.php');
+  include('arquivosDeSessao/conexao.php');
   include('arquivosDeSessao/verificaLogin.php');
   include('arquivosDeSessao/conexaoBancoInterno.php');
 
@@ -77,9 +78,11 @@
 
 <!-- após criado a cesta -->
 <?php
-  include('arquivosDeSessao/conexao.php');
+
   $verificaExistenciaDb = mysqli_query($conn, "SHOW TABLES LIKE 'cesta_cliente_$idCliente'") or die(mysqli_error($conn));
   if ($verificaExistenciaDb ->num_rows > 0) {
+
+    $totalPreco = 0;
     $query = "SELECT codigoProduto FROM cesta_cliente_$idCliente";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     if (mysqli_num_rows($result) == 0) {
@@ -117,7 +120,6 @@
           <div class="container">
             <div class="boxCestaCompras">
       ';
-      $totalPreco = 0;
       while($row = mysqli_fetch_assoc($result)) {
         $codigoProduto = $row['codigoProduto'];
         $query2 = "SELECT * FROM produtos WHERE codigoProduto = '$codigoProduto'";
@@ -159,10 +161,11 @@
           </div>
         </section>
       ';
+      
+      $totalPreco = number_format($totalPreco, 2, ',', '');
     }
   }
-  $totalPreco = str_replace('.', ',', $totalPreco);
-  $totalPreco = number_format($totalPreco, 2, ',', '');
+
   echo '
     <div class="container">
       <div class="totalCesta">Total: <span>R$</span> '.$totalPreco.'</div>

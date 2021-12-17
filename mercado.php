@@ -19,7 +19,16 @@
   $inicio = $paginaAtual - 1;
   $inicio = $inicio * $qtdPorPagina;
   $limite = $inicio.','.$qtdPorPagina;
-  $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
+
+  $verificaCategoriaParaPaginacao = '';
+  if(isset($_GET['categoria'])){
+    $categoriaPaginacao = htmlspecialchars($_GET['categoria'], ENT_QUOTES, 'utf-8');
+    $verificaCategoriaParaPaginacao = 'categoria='.$categoriaPaginacao.'&';
+    $todos = "SELECT * FROM produtos WHERE removido != 'sim' AND idCategoria = $categoriaPaginacao ORDER BY nomeProduto";
+  }
+  else {
+    $todos = "SELECT * FROM produtos WHERE removido != 'sim' ORDER BY nomeProduto";
+  }
 
   $result = mysqli_query($connBDInterno, $todos);
   $numRegistros =  mysqli_num_rows($result); // verifica o número total de registros
@@ -133,16 +142,17 @@
 
         </div>
         <?php
-        $anterior = $paginaAtual -1;
-        $proximo = $paginaAtual +1;
-        if ($paginaAtual>1) {
-        echo " <a href='?pagina=$anterior'><i class='fas fa-angle-left'></i> Anterior</a> ";
-        }
 
-        echo "|";
-        if ($paginaAtual<$qtdPaginas) {
-        echo " <a href='?pagina=$proximo'>Próxima <i class='fas fa-angle-right'></i></a>";
-        }
+          $anterior = $paginaAtual -1;
+          $proximo = $paginaAtual +1;
+          if ($paginaAtual>1) {
+              echo ' <a href="?'.$verificaCategoriaParaPaginacao.'pagina='.$anterior.'"><i class="fas fa-angle-left"></i> Anterior</a> ';
+          }
+
+          echo "|";
+          if ($paginaAtual<$qtdPaginas) {
+            echo ' <a href="?'.$verificaCategoriaParaPaginacao.'pagina='.$proximo.'"><i class="fas fa-angle-right"></i> Próximo</a> ';
+          }
         ?>
       </div>
     </div>

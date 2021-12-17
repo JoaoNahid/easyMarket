@@ -27,17 +27,56 @@
           </div>
        </div>
        <div class="row">
-         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-             <div class="about_box">
-                 <h3>Best Food</h3>
-                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscureContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard </p>
-                 <a href="#">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/joao.jpg) no-repeat center center">
+               <p>João Nahid</p>
              </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Linguagem PHP</li>
+                 <li>Linguagem HTML</li>
+                 <li>Linguagem JavaScript</li>
+                 <li>Linguagem CSS</li>
+                 <li>Linguagem SQL</li>
+                 <li>Modelagem de Dados</li>
+               </ul>
+             </div>
+           </div>
          </div>
-          <div class="col-xl-5 col-lg-5 col-md-10 col-sm-12 about_img_boxpdnt">
-             <div class="about_img">
-                 <figure><img src="images/about-img.jpg" alt="#/"></figure>
+
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/leonardo.jpg) no-repeat center center">
+               <p>Leonardo Patrick</p>
              </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Linguagem PHP</li>
+                 <li>Linguagem HTML</li>
+                 <li>Linguagem SQL</li>
+                 <li>Modelagem de Dados</li>
+               </ul>
+             </div>
+           </div>
+         </div>
+
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/matheus.jpg) no-repeat center center">
+               <p>Matheus Felipe</p>
+             </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Linguagem PHP</li>
+                 <li>Linguagem HTML</li>
+                 <li>Linguagem SQL</li>
+               </ul>
+             </div>
+           </div>
          </div>
        </div>
     </div>
@@ -48,13 +87,52 @@
              <div class="title tituloAtuacao">
                 <i><img class="iconAtuacao" src="images/designIcon.png" alt="#"/></i>
 
-                <h3>Design</h3>
+                <h3>Design do site</h3>
              </div>
           </div>
        </div>
        <div class="row">
          <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/anaVitoria.jpg) no-repeat center center">
+               <p>Ana Vitória</p>
+             </div>
 
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Criação de Banners</li>
+                 <li>Design do Site</li>
+               </ul>
+             </div>
+           </div>
+         </div>
+
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/nando.jpg) no-repeat center center">
+               <p>Fernando Moreira</p>
+             </div>
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Criação de Banner</li>
+                 <li>Seleção de Imagens</li>
+               </ul>
+             </div>
+           </div>
+         </div>
+
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/michael.jpg) no-repeat center center">
+               <p>Michael Collins Silva</p>
+             </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Escolha do Template</li>
+               </ul>
+             </div>
+           </div>
          </div>
        </div>
     </div>
@@ -65,22 +143,39 @@
              <div class="title tituloAtuacao">
                 <i><img class="iconAtuacao" src="images/documentacaoIcon.png" alt="#"/></i>
 
-                <h3>Documentação</h3>
+                <h3>Documentação e Elaboração</h3>
              </div>
           </div>
        </div>
        <div class="row">
-         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-             <div class="about_box">
-                 <h3>Best Food</h3>
-                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscureContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard </p>
-                 <a href="#">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/nahid.jpg) no-repeat center center">
+               <p>João Nahid</p>
              </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Elaboração do Projeto</li>
+                 <li>Documentação do TCC</li>
+               </ul>
+             </div>
+           </div>
          </div>
-          <div class="col-xl-5 col-lg-5 col-md-10 col-sm-12 about_img_boxpdnt">
-             <div class="about_img">
-                 <figure><img src="images/about-img.jpg" alt="#/"></figure>
+
+         <div class="col-md-4">
+           <div class="boxIntegrante">
+             <div class="imgIntegrante" style="background:url(images/integrantes/leonardo.jpg) no-repeat center center">
+               <p>Leonardo Patrick</p>
              </div>
+
+             <div class="infoIntegrante">
+               <ul>
+                 <li>Elaboração do Projeto</li>
+                 <li>Documentação do TCC</li>
+               </ul>
+             </div>
+           </div>
          </div>
        </div>
     </div>
