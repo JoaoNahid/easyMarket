@@ -76,10 +76,10 @@
     $senhaLogin = trim(htmlspecialchars($_POST['senhaLogin'], ENT_QUOTES, 'utf-8'));
     $senhaLogin = md5($senhaLogin);
 
-    $query = "SELECT nomeCliente, emailCliente, idCliente FROM clientes WHERE emailCliente='$login'";
+    $query = "SELECT nomeCliente, emailCliente, idCliente FROM clientes WHERE emailCliente='$login' OR nomeCliente='$login'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
-      $query = "SELECT * FROM clientes WHERE senhaCliente='$senhaLogin'";
+      $query = "SELECT * FROM clientes WHERE senhaCliente='$senhaLogin' AND emailCliente='$login' OR senhaCliente='$senhaLogin' AND  nomeCliente='$login'";
       $result = mysqli_query($conn, $query);
       if (mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){

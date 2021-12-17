@@ -3,7 +3,7 @@
   include('arquivosDeSessao/conexao.php');
   include('arquivosDeSessao/conexaoBancoInterno.php');
 
-  $idCliente = $_SESSION['idCliente'];
+
 ?>
     <!-- section -->
     <div class="blog">
@@ -33,13 +33,23 @@
                   $codigoProduto = $row['codigoProduto'];
                   $destaqueProduto = $row['destaqueProduto'];
 
-                  $query2 = "SELECT * FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProduto'";
-                  $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
-                  if(mysqli_num_rows($result2) > 0){
-                    $verificaSeTemNaCesta = '<a class="addCesta" "><i class="fas fa-check"></i></a>';
-                  } else{
-                    $verificaSeTemNaCesta ='<a class="addCesta" href="produto.php?adicionarACesta='.$codigoProduto.'&encarte"><i class="fas fa-shopping-basket"></i></a>';
+
+                  $verificaSeTemNaCesta ='<a class="addCesta" href="login.php?"><i class="fas fa-shopping-basket"></i></a>';
+                  if(isset($_SESSION['logadoSite'])){
+                    $idCliente = $_SESSION['idCliente'];
+
+                    $verificaSeTemNaCesta ='<a class="addCesta" href="produto.php?adicionarACesta='.$codigoProduto.'&produtoEncarte"><i class="fas fa-shopping-basket"></i></a>';
+                    $verificaExistenciaDb = mysqli_query($conn, "SHOW TABLES LIKE 'cesta_cliente_$idCliente'") or die(mysqli_error($conn));
+                    if ($verificaExistenciaDb ->num_rows > 0) {
+
+                      $query2 = "SELECT * FROM cesta_cliente_$idCliente WHERE codigoProduto = '$codigoProduto'";
+                      $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+                      if(mysqli_num_rows($result2) > 0){
+                        $verificaSeTemNaCesta = '<a class="addCesta" "><i class="fas fa-check"></i></a>';
+                      }
+                    }
                   }
+
             ?>
             <div class="col-xl-4 col-lg-4 col-md-4 boxExibicaoProduto col-sm-12 mar_bottom">
                <div class="produto_box">

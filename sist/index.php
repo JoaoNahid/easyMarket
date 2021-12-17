@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fontawesome/css/all.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Login - WebSystems</title>
+    <title>Login - Easy Market</title>
   </head>
   <body>
 
     <header id="header">
       <div class="container">
         <div class="colunasTop logoHeader">
-          <a href="entrada.php"><span style="color: rgb(193, 25, 38)">E</span>asy<span style="color: rgb(193, 25, 38);">M</span>arket</a>
+          <a href="entrada.php"><span style="color: #009000">E</span>asy<span style="color: rgb(193, 25, 38);">M</span>arket</a>
         </div>
         <div class="colunasTop floatRight loginOptionsHeader">
           <div class="colunasTop usuarioHeader">
